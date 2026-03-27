@@ -2,15 +2,14 @@
 
 > **Note:** This skill is a placeholder — content is incomplete.
 
-Offloaded from playbook Hooks section. Creates hook placeholders in `.claude/hooks/` during Session 0a, Step 3 (Scaffold).
-
-> **NOTE:** Hook implementations are detailed and filled in Session 1. This skill only scaffolds the structure and purpose definitions.
+Derives and creates hooks and rules during Session 1, Step 1.7 — after the plan and agent roles are defined.
 
 ---
 
 ## Prerequisites
 
-- Project scaffold structure exists (`.claude/hooks/` directory)
+- Session 1 Step 1.6 (Role Review) completed — plan and agents are approved
+- `.claude/hooks/` and `.claude/rules/` directories exist (created by scaffold)
 
 ---
 
@@ -48,10 +47,4 @@ purpose: [what it does]
 
 ## Outcome
 
-`.claude/hooks/` contains placeholder files for auto-format, guard, commit, and stop hooks. Bodies left empty for Session 1 population.
-
----
-
-## Next
-
-Session 1 fills in hook implementations based on project stack and role needs.
+`.claude/hooks/` and `.claude/rules/` contain hook and rule files derived from the approved plan and agent roles. Proceed to Session 1 Step 1.8 (Planning Gate).

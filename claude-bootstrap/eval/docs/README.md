@@ -105,7 +105,7 @@ When reviewing a simulation result, check these were created correctly:
 - [ ] `.claude/state/CONTEXT.md` — initial state with decisions, constraints, concerns
 - [ ] `.claude/state/logs/` — interview handoff + any other session logs
 - [ ] `.claude/skills/`, `.claude/rules/`, `.claude/hooks/` — placeholder infrastructure
-- [ ] `.claude/PLAN.md` — execution plan (if Session 1 reached)
+- [ ] `.claude/state/PLAN.md` — execution plan (if Session 1 reached)
 
 ---
 

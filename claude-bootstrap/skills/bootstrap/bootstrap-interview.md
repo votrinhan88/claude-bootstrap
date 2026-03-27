@@ -14,17 +14,18 @@ Collects everything needed to scaffold a new project: spec, stakeholders, failur
 
 ### What to extract
 
-Cover all topics. Do not exit until all four **required** items are concrete. If a required item is genuinely deferred (e.g., "formatting requirements TBD"), flag it in Confidence Notes and proceed — explicit deferral is acceptable; vagueness is not.
+Cover all topics. Do not exit until all **required** items are concrete. If a required item is genuinely deferred (e.g., "formatting requirements TBD"), flag it in Confidence Notes and proceed — explicit deferral is acceptable; vagueness is not.
 
 Topics to cover (hold internally, do not present as a list):
 
+- **Domain** — What kind of project is this? (software, research, writing, design, operations, other) *(Required: shapes which sub-skills activate and which questions apply)*
 - **Purpose** — What does this project do? What does success look like?
 - **Success** — What does "done" look like? What would block completion? *(Required: at least one testable criterion)*
 - **Scope** — What's in for v1? What's explicitly out?
 - **Constraints** — Any hard limits? (platform, format, integration, compliance, deadline) *(Required: explicit "none" is acceptable)*
 - **Quality** — What matters most? Rank top three. Where can you cut corners?
 - **Failure modes** — What would a bad version of this look like? What's most likely to go wrong? For experienced users: what's kept you up at night on past projects?
-- **Delivery** — What artifact or system results? How will it be validated? Solo or collaborative? *(Required: delivery target must be named)*
+- **Delivery** — What artifact or deliverable results? How will it be validated? Solo or collaborative? *(Required: delivery target must be named)*
 
 ---
 
@@ -34,6 +35,7 @@ Summarize back before writing the handoff:
 
 ```
 Project: [name] — [one-line description]
+Domain: [software | research | writing | design | operations | other]
 Success: [criteria]
 In scope: [list]
 Out of scope: [list]
@@ -56,6 +58,7 @@ Write a log entry using the frontmatter format from `.claude/docs/templates/logs
 ```
 ## Project
 - Name:
+- Domain: [software | research | writing | design | operations | other]
 - Description (one line):
 - Success criteria:
 

@@ -2,7 +2,7 @@
 
 > **Note:** This skill is a placeholder — content is incomplete.
 
-Creates `.claude/state/` scaffold and log templates during Session 0. Does **not** populate CONTEXT.md or write log entries — that happens at the end of Session 0 after all bootstrap work is complete.
+Creates `.claude/state/` directory structure and exports log templates during Session 0 Step 6. CONTEXT.md is populated and the first log entry is written in Step 7 (Review Gate), after all bootstrap work is complete.
 
 ---
 

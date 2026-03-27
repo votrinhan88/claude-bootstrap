@@ -30,7 +30,7 @@
 - [ ] `.claude/agents/` (orchestrator + [list roles])
 - [ ] `.claude/state/CONTEXT.md`
 - [ ] `.claude/state/logs/` (interview handoff)
-- [ ] `.claude/PLAN.md` (if Session 1 reached)
+- [ ] `.claude/state/PLAN.md` (if Session 1 reached)
 
 ---
 

@@ -7,7 +7,7 @@ Entry point for Session 0. Guides users through project initialization.
 ## How to Use
 
 1. Start a new Claude Code session in your project directory
-2. Reference `claude-code-bootstrap.md` or this skill
+2. Run this skill (`claude-bootstrap/skills/bootstrap.md`)
 3. Agent invokes the interview to determine project context
 4. Routes to appropriate bootstrap flow (new or existing project)
 
@@ -15,10 +15,12 @@ Entry point for Session 0. Guides users through project initialization.
 
 ## Agent Flow
 
-1. Interview (new or existing project?)
-2. If new: git-setup → scaffold → agents → gate
-3. If existing: audit → mode-choice → scaffold → agents → gate
-4. Proceed to Session 1
+**Session 0** (infrastructure + spec):
+- New project: git-setup → interview → scaffold → state → gate
+- Existing project: git-setup → audit → mode-choice → interview → scaffold → state → gate
+
+**Session 1** (roles + plan):
+- Explore spec → define agents → draft plan → pre-flight → annotate → role review → hooks & rules → gate
 
 ---
 
@@ -30,28 +32,19 @@ Entry point for Session 0. Guides users through project initialization.
 | [bootstrap-git](bootstrap/bootstrap-git.md) | Git configuration and workflow setup |
 | [bootstrap-scaffold](bootstrap/bootstrap-scaffold.md) | Create `.claude/` directory structure |
 | [bootstrap-state](bootstrap/bootstrap-state.md) | Initialize CONTEXT.md, state system, and log templates |
-| [bootstrap-hooks](bootstrap/bootstrap-hooks.md) | Create hook placeholder infrastructure |
-| [bootstrap-agents](bootstrap/bootstrap-agents.md) | Define project-specific agents |
+| [bootstrap-agents](bootstrap/bootstrap-agents.md) | Define project-specific agents (Session 1, Step 1.2) |
+| [bootstrap-hooks](bootstrap/bootstrap-hooks.md) | Create hooks and rules (Session 1, Step 1.7) |
 | [bootstrap-runtime](bootstrap/bootstrap-runtime.md) | Session discipline and operational signals |
 
 ---
 
 ## Session 0 Gate
 
-> **Agent:** After all bootstrap skills have run (interview, git, scaffold, state, hooks, agents, runtime):
-
-1. **Populate CONTEXT.md** from the template (`claude-bootstrap/templates/context.md`), filling in:
-   - Status: one sentence summarizing the bootstrapped project
-   - Decisions: all choices made during bootstrap (git, branching, agent roles, etc.)
-   - Constraints: hard limits discovered during interview
-   - Open Issues: any low-confidence areas flagged during bootstrap
-   - Leave Understanding, What Changed, and Tasks sections empty — they activate in Session 1+
-2. **Write the first log entry** — a `handoff` entry summarizing the full Session 0 bootstrap
-3. **Present to user** for review and confirmation
+> **Agent:** Run `session-00-bootstrap.md` Step 7. State population, handoff log, and user confirmation are all handled there.
 
 ---
 
 ## Next Steps
 
 After Session 0 gate passes:
-- Proceed to Session 1 (Planning) in `session-01-PLAN.md`
+- Proceed to Session 1 (Planning) in `session-01-plan.md`

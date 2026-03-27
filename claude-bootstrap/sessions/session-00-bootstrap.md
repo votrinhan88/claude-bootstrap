@@ -1,6 +1,6 @@
 # Session 0 — Bootstrap
 
-Initialize or onboard a project: set up git, audit existing work, establish Claude infrastructure, define agents, and initialize state.
+Initialize or onboard a project: set up git, audit existing work, establish Claude infrastructure, capture spec, and initialize state.
 
 > **Agent:** This is a disposable session. Your job is to set up infrastructure and get confirmation. You do not implement anything. You do not modify existing project files unless the user explicitly approves.
 
@@ -24,7 +24,7 @@ Initialize or onboard a project: set up git, audit existing work, establish Clau
 >
 > Present findings to the user and let them correct and fill gaps. Note explicitly whether `.claude/` exists.
 
-**Outcome:** Project is fully understood. Stack, conventions, existing infrastructure, and gaps are documented. Whether `.claude/` exists is confirmed.
+**Outcome:** Project is fully understood. Tools, environment, conventions, existing infrastructure, and gaps are documented. Whether `.claude/` exists is confirmed.
 
 ---
 
@@ -47,12 +47,12 @@ Initialize or onboard a project: set up git, audit existing work, establish Clau
 
 > **Agent:** Run the interview skill: `claude-bootstrap/skills/bootstrap/bootstrap-interview.md`
 >
-> - **New project:** Full interview — goals, failure modes, stack, constraints.
-> - **Existing project:** Gap-filling only — cover what the audit couldn't reveal: technical debt, implementation patterns, team context, current phase, and success criteria.
+> - **New project:** Full interview — domain, goals, failure modes, tools and environment, constraints.
+> - **Existing project:** Gap-filling only — cover what the audit couldn't reveal: domain context, technical debt, implementation patterns, team context, current phase, and success criteria.
 >
 > A log entry is written to state logs as the interview handoff record.
 
-**Outcome:** A structured understanding of goals, failure modes, stack, and constraints. Interview log recorded.
+**Outcome:** A structured understanding of domain, goals, failure modes, tools and environment, and constraints. Interview log recorded.
 
 ---
 
@@ -61,7 +61,7 @@ Initialize or onboard a project: set up git, audit existing work, establish Clau
 > **Agent:** Run the scaffold skill: `claude-bootstrap/skills/bootstrap/bootstrap-scaffold.md`
 >
 > - **New project:** Create all directories and placeholder files from scratch.
-> - **Existing project, Extend:** Add framework infrastructure alongside. Never overwrite existing files. Adapt to existing conventions and git workflow.
+> - **Existing project, Extend:** Add framework infrastructure alongside. Never overwrite existing files. Adapt to existing conventions and workflows.
 > - **Existing project, Migrate:** Execute the approved migration plan. Back up existing files first.
 > - **Existing project, Replace:** Archive existing `.claude/` config. Scaffold fresh from framework defaults.
 
@@ -69,41 +69,39 @@ Initialize or onboard a project: set up git, audit existing work, establish Clau
 
 ---
 
-## Step 6: Agent Definition
-
-> **Agent:** Run the agents skill: `claude-bootstrap/skills/bootstrap/bootstrap-agents.md`
->
-> Derive roles from interview findings, failure modes, and (if existing project) audit findings and any prior role definitions. Create a tension map. Present to user for approval before proceeding.
-
-**Outcome:** All agent files are fully defined and confirmed by the user. The tension map is approved.
-
----
-
-## Step 7: State Initialization
+## Step 6: State Initialization
 
 > **Agent:** Run the state skill: `claude-bootstrap/skills/bootstrap/bootstrap-state.md`
 >
-> Initialize context state with role-aware decisions and concerns from the interview, audit (if run), and agent definitions.
+> Create `.claude/state/` directory structure and export log templates. CONTEXT.md is left empty — it is populated in Step 7 after all bootstrap work is complete.
 
-**Outcome:** Context state initialized. The system is now role-aware.
+**Outcome:** `.claude/state/` exists. Log templates exported to `.claude/docs/templates/logs/`.
 
 ---
 
-## Step 8: Review Gate
+## Step 7: Review Gate
 
-> **Agent:** Present a summary to the user:
+> **Agent:** Before presenting, close out state:
+>
+> 1. **Populate `.claude/state/CONTEXT.md`** from the template (`claude-bootstrap/templates/context.md`), filling in:
+>    - Status: one sentence summarizing the bootstrapped project
+>    - Decisions: all choices made during bootstrap (git, branching, integration mode)
+>    - Constraints: hard limits discovered during interview
+>    - Open Issues: any low-confidence areas flagged during bootstrap
+>    - Leave Understanding, What Changed, and Tasks sections empty — they activate in Session 1+
+> 2. **Write the first log entry** — a `handoff` entry to `.claude/state/logs/` summarizing the full Session 0 bootstrap
+>
+> Then present a summary to the user:
 > - Git configuration chosen
 > - Integration mode chosen (if existing project) and what was done
-> - Roles and tension map
 > - CLAUDE.md and SPEC.md outline
-> - Configuration and context state contents
-> - Hooks and skills included (as placeholders — content filled in Session 1)
+> - CONTEXT.md contents
 >
 > Ask: "Ready to move to planning, or adjust anything?"
 >
 > Do not proceed until the user confirms.
 
-**Outcome:** User has approved the scaffold. If git tracking is enabled, commit the scaffold now.
+**Outcome:** CONTEXT.md populated. Handoff log written. User has approved the scaffold. If git tracking is enabled, commit the scaffold now.
 
 ---
 

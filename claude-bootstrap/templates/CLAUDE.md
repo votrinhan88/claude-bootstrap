@@ -5,15 +5,15 @@ The only Claude file at root. Loads every session automatically.
 
 [One-line description]
 
-## Stack
+## Tools
 
-[Language, framework, key deps]
+[Key tools, languages, frameworks, or platforms]
 
-## Commands
+## Workflow Commands
 
-- Build: `[cmd]`
-- Test: `[cmd]`
-- Lint: `[cmd]`
+- Build/Run: `[cmd]`
+- Verify: `[cmd]`
+- Lint/Check: `[cmd]`
 
 ## Git (include only if git enabled)
 
@@ -31,7 +31,7 @@ The only Claude file at root. Loads every session automatically.
 
 ## Session Protocol
 
-- Start: read .claude/CONTEXT.md, verify
+- Start: read .claude/state/CONTEXT.md, verify
   state against actual project (git log, tests, files). Reconcile.
   Read last 2-3 entries in .claude/state/logs/ if needed.
 - End: curate CONTEXT.md (remove stale entries),

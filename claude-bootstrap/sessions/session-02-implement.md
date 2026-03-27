@@ -4,9 +4,9 @@
 
 Execute plan phases with orchestrated role agents, intervene at phases and blockers, manage state and logs.
 
-**Prerequisites:** Session 1 completed — PLAN.md exists and is approved.
+**Prerequisites:** Session 1 completed — `.claude/state/PLAN.md` exists and is approved.
 
-> **Agent:** Fresh session. Normal Mode. Read `.claude/state/CONTEXT.md` first. Verify state against actual project (git log, file system, test results). Reconcile any discrepancies before proceeding.
+> **Agent:** Fresh session. Normal Mode. Read `.claude/state/CONTEXT.md` first. Verify state against actual project (git log, file system, outputs/artifacts). Reconcile any discrepancies before proceeding.
 
 ## Autonomy Modes
 
@@ -33,6 +33,8 @@ At any autonomy level: **Esc always interrupts immediately**, and **Tier 2 escal
 | `max`     | opus         | opus   | sonnet |
 | `default` | opus         | sonnet | haiku  |
 | `min`     | sonnet       | haiku  | haiku  |
+
+> **Note:** Model names above are defaults — check current Claude model IDs when configuring.
 
 Usage: `/set-models <preset>` or `/set-models <orchestrator> <high> <low>`
 
@@ -92,7 +94,7 @@ At every stage of the loop, you have fine-grained control:
 | Phase gate review     | Multi-perspective role review (default) |
 | Skip review           | "I trust this, continue"                |
 | Adversarial pass      | "Stress-test this phase"                |
-| Adjust plan           | Edit PLAN.md before continuing          |
+| Adjust plan           | Edit `.claude/state/PLAN.md` before continuing          |
 | Adjust roles          | "Add [X] perspective" / "Retire [Y]"    |
 | Trigger retrospective | Full health check + role adequacy       |
 | End session           | Handoff and fresh start                 |
@@ -108,13 +110,13 @@ At every stage of the loop, you have fine-grained control:
 | Change scope           | "Remove this from spec"              |
 | Trigger pivot          | "This reveals a fundamental problem" |
 
-**6. Retrospective** (every 3 phases or `/health`)
+**6. Retrospective** (periodic or `/health`)
 
 | Action          | How                                            |
 | --------------- | ---------------------------------------------- |
 | Continue as-is  | "Looks good, proceed"                          |
 | Adjust roles    | Add, merge, retire, redefine                   |
-| Revise spec     | Update SPEC.md                                 |
+| Revise spec     | Update `.claude/docs/SPEC.md`                  |
 | Re-plan         | Rewrite upcoming phases                        |
 | Pivot           | Fundamental course correction                  |
 | Change autonomy | Switch between manual / auto / auto-skip-gates |
@@ -158,7 +160,7 @@ Include in every phase gate:
 
 ## Periodic Retrospective
 
-> **Agent:** After every 3 completed plan phases (or when user runs `/health`):
+> **Agent:** Periodically — every 3 completed plan phases by default, or when user runs `/health`:
 >
 > - Are the current roles still right? Add, merge, retire?
 > - Has the spec drifted enough to warrant revision?
@@ -167,15 +169,15 @@ Include in every phase gate:
 >
 > Present findings. This is a checkpoint, not a blocker — user decides whether to act.
 
-# Pivot Protocol
+## Pivot Protocol
 
-When a Tier 2 escalation reveals a fundamental problem — wrong architecture, wrong technology, spec error.
+When a Tier 2 escalation reveals a fundamental problem — wrong approach, wrong scope, spec error.
 
 > **Agent:**
 >
 > 1. Freeze implementation
 > 2. Log the pivot trigger to .claude/state/logs/ with full context
-> 3. Update SPEC.md with the new understanding
+> 3. Update `.claude/docs/SPEC.md` with the new understanding
 > 4. Re-evaluate roles: still valid?
 > 5. Re-plan from current state (preserve completed work)
 > 6. Update `.claude/state/CONTEXT.md` and logs
