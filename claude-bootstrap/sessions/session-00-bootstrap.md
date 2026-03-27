@@ -32,7 +32,7 @@ Initialize or onboard a project: set up git, audit existing work, establish Clau
 
 > **Agent:** Skip this step if: (a) the project is new, or (b) no `.claude/` directory was found in Step 2.
 >
-> Run the integration-mode skill: `claude-bootstrap/skills/bootstrap/bootstrap-integration-mode.md`
+> Run the integration-mode skill: `claude-bootstrap/skills/bootstrap/bootstrap-integration.md`
 >
 > Present three options:
 > - **Extend** (default) — Add framework infrastructure alongside existing config. Nothing is touched or overwritten.

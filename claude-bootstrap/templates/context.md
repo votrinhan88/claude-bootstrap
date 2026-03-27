@@ -1,29 +1,34 @@
-### context.md — Session State (curated)
-
-Read every session start. Curated every session end — remove stale entries (preserved in logs/).
-Updated every task completion. Orchestrator's primary routing input.
-
-```markdown
 # Context
 
 ## Status
-[1-2 sentences: overall project state]
+[1-2 sentences: what is true about the project right now]
 
-### Completed
-- [task]: [result]
+## Understanding
+- [belief]: [evidence or source, session/date discovered]
+
+## What Changed
+- [change]: [who, when]
+
+## Tasks
 
 ### In Progress
-- [task]: [state, owner]
+- [task]: [state]
 
 ### Blocked
-- **[task-id]**: [problem] — tried [X], needs [role], recommends [Y]
+- **[task-id]**: [problem] — tried [X], needs [Y], recommends [Z]
 
 ### Next
-- [task]: [owner, complexity]
+- [task]: [complexity]
 
-## Decisions
-- [decision]: [rationale, date]
+### Completed
+- [task]: [result, log ref]
 
 ## Open Issues
-- [issue]: [raised by, impact, status]
-```
+- [area]: [uncertainty, potential impact]
+
+## Decisions
+- [decision]: [rationale, date, confidence: high|medium|low]
+
+## Constraints
+- **Hard**: [constraint]: [impact]
+- **Soft**: [constraint]: [impact]

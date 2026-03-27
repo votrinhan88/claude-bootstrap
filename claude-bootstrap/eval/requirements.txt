@@ -1,0 +1,6 @@
+# No external dependencies required
+# run-eval.py uses only Python standard library:
+# - os, sys, subprocess, tempfile, shutil, json
+# - pathlib, datetime, platform
+
+# Minimal requirements file for uv setup

@@ -34,21 +34,15 @@ Each role must:
 
 ## Tension Mapping
 
-After drafting all roles, create a **tension map**:
+After drafting all roles, identify productive tensions between them:
 
-For each pair of roles that conflicts, explicitly state:
-- Where they disagree (which decision, quality metric, or approach)
-- Why that tension is productive (what does it prevent? what does it enable?)
+- Each agent's `**Tensions**` section is the source of truth
+- Each entry names the conflicting peer, what they disagree on, and why it's productive
+- Present tensions to the user for approval before writing them into agent files
 
-**Example tensions:**
+If a role has no tensions with any other role, **warn the user** — it may be a legitimate utility/observer role, or it may indicate the role is redundant or under-defined. Let the user decide.
 
-| Roles | Disagree on | Productive because |
-|-------|------------|-------------------|
-| architect ↔ developer | speed vs. consistency | Forces thoughtful trade-offs; prevents reckless rewrites AND over-engineering |
-| qa ↔ developer | coverage vs. velocity | Keeps shipping realistic while quality stays defensible |
-| ops ↔ end-user advocate | stability vs. features | Prevents broken deployments AND feature starvation |
-
-If a role creates no tension with any other role, **it is redundant** — remove it and delete its placeholder file.
+> The health skill can assemble a full tension matrix on demand by reading all agent files.
 
 ---
 
@@ -67,4 +61,6 @@ These are illustrative, not prescriptive. Derive roles from *your* interview fin
 
 ## Outcome
 
-All agent files are fully defined (see `claude-bootstrap/templates/agent.md` for format). Tension map is created and approved by user before proceeding to Step 5 (State Definition).
+- All agent files fully defined (see `claude-bootstrap/templates/agent.md` for format)
+- Tensions defined in each agent file's `**Tensions**` section
+- Proceed to Step 5 (State Definition)

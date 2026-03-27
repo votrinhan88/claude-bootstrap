@@ -1,0 +1,21 @@
+[project]
+name = "bootstrap-eval"
+version = "0.1.0"
+description = "Evaluation framework for claude-bootstrap pipeline"
+requires-python = ">=3.8"
+authors = [{name = "Bootstrap Team"}]
+license = {text = "MIT"}
+keywords = ["bootstrap", "evaluation", "testing"]
+
+# No dependencies - uses only stdlib
+dependencies = []
+
+[project.optional-dependencies]
+dev = []
+
+[tool.uv]
+python-version = "3.11"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

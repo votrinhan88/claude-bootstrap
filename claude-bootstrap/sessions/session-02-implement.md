@@ -4,9 +4,9 @@
 
 Execute plan phases with orchestrated role agents, intervene at phases and blockers, manage state and logs.
 
-**Prerequisites:** Session 1 completed — plan.md exists and is approved.
+**Prerequisites:** Session 1 completed — PLAN.md exists and is approved.
 
-> **Agent:** Fresh session. Normal Mode. Read `.claude/state/status.md` and `.claude/state/context.md` first. Verify state against actual project (git log, file system, test results). Reconcile any discrepancies before proceeding.
+> **Agent:** Fresh session. Normal Mode. Read `.claude/state/CONTEXT.md` first. Verify state against actual project (git log, file system, test results). Reconcile any discrepancies before proceeding.
 
 ## Autonomy Modes
 
@@ -44,7 +44,7 @@ Usage: `/set-models <preset>` or `/set-models <orchestrator> <high> <low>`
 3. Agent executes → returns summary
 4. If next task has same owning role and no phase boundary
    → same-role continuation (skip orchestrator re-dispatch)
-5. Otherwise → update status.md, curate context.md,
+5. Otherwise → curate CONTEXT.md,
    append to .claude/state/logs/, present summary
 6. At phase boundary → run phase gate review
 ```
@@ -92,7 +92,7 @@ At every stage of the loop, you have fine-grained control:
 | Phase gate review     | Multi-perspective role review (default) |
 | Skip review           | "I trust this, continue"                |
 | Adversarial pass      | "Stress-test this phase"                |
-| Adjust plan           | Edit plan.md before continuing          |
+| Adjust plan           | Edit PLAN.md before continuing          |
 | Adjust roles          | "Add [X] perspective" / "Retire [Y]"    |
 | Trigger retrospective | Full health check + role adequacy       |
 | End session           | Handoff and fresh start                 |
@@ -154,7 +154,7 @@ After each plan phase:
 
 Include in every phase gate:
 
-> **Agent:** Compare current implementation against `.claude/docs/spec.md`. Flag deviations. If intentional, log to `.claude/state/context.md` and `.claude/state/logs/`. If accidental, add to `.claude/state/status.md` as blocked.
+> **Agent:** Compare current implementation against `.claude/docs/SPEC.md`. Flag deviations. If intentional, log to `.claude/state/CONTEXT.md` and `.claude/state/logs/`. If accidental, add to `.claude/state/CONTEXT.md` under Blocked section.
 
 ## Periodic Retrospective
 
@@ -178,5 +178,5 @@ When a Tier 2 escalation reveals a fundamental problem — wrong architecture, w
 > 3. Update SPEC.md with the new understanding
 > 4. Re-evaluate roles: still valid?
 > 5. Re-plan from current state (preserve completed work)
-> 6. Update `.claude/state/status.md` and `.claude/state/context.md`
+> 6. Update `.claude/state/CONTEXT.md` and logs
 > 7. Present the pivot to user for confirmation before resuming

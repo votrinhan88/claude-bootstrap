@@ -26,13 +26,28 @@ Auto-execute through all phases. User reviews only on blockers or escalations. F
 
 ## Phase Loop
 
-1. **Read state** — CONTEXT.md, plan.md, last log entry
+1. **Read state** — CONTEXT.md, PLAN.md, last log entry
 2. **Route task** — orchestrator selects next task per plan
 3. **Invoke role** — spawn role-agent with task scope
 4. **Capture result** — log entry written, CONTEXT.md updated
 5. **Check gate** — if phase complete, pause for review (unless --auto or --skip-gates)
 6. **Merge & tag** — if git enabled, squash-merge phase branch to main
 7. **Repeat** — next phase
+
+---
+
+## Conflict Resolution
+
+When two role-agents disagree, the orchestrator reads each agent's `**Tensions**` section to decide how to handle it:
+
+| Tension type | Orchestrator action |
+|---|---|
+| Known productive tension (in agent file) | Let both roles make their case — surface the trade-off to the user at the next gate |
+| Known tension, clear winner per context | Apply the context rule from the agent's tension entry; log the decision |
+| Unknown tension (not in any agent file) | Treat as a gap — escalate to user, add tension to relevant agent files if a new pattern is identified |
+| Irreconcilable disagreement | Human-escalate immediately regardless of autonomy mode |
+
+> Agent tension entries are not tiebreakers — they're a map. The orchestrator uses them to recognize *expected* friction and keep it productive rather than treating every disagreement as a blocker.
 
 ---
 
@@ -83,7 +98,7 @@ Cost: 2.5–3x + coordination overhead.
 
 ## Session End
 
-At phase boundary or escalation:
-1. Log phase summary to `.claude/state/logs/`
-2. Update CONTEXT.md
+At phase boundary or escalation, follow the session end protocol in `claude-bootstrap/skills/state-control.md`:
+1. Curate CONTEXT.md (update status, advance tasks, review decisions, check budget)
+2. Write log entry to `.claude/state/logs/`
 3. Close session or proceed to next phase per mode

@@ -4,7 +4,7 @@
 
 Explore spec, draft execution plan with role ownership and validation gates, refine through role review.
 
-**Prerequisites:** Session 0 completed — `.claude/docs/spec.md`, all agents, orchestrator, and `.claude/state/` exist.
+**Prerequisites:** Session 0 completed — `.claude/docs/SPEC.md`, all agents, orchestrator, and `.claude/state/` exist.
 
 > **Agent:** Start in Plan Mode (read-only — no file modifications). Your job is to produce a reviewed, annotated execution plan. You do not implement anything.
 
@@ -14,7 +14,7 @@ Explore spec, draft execution plan with role ownership and validation gates, ref
 
 ## 1.2 Draft Plan
 
-> **Agent:** Write .claude/plan.md. Each phase must have:
+> **Agent:** Write .claude/state/PLAN.md. Each phase must have:
 > - Clear deliverable
 > - Validation step immediately after (test, review, or check)
 > - Owning role-agent (from `.claude/agents/`)
@@ -36,15 +36,15 @@ Explore spec, draft execution plan with role ownership and validation gates, ref
 
 ## 1.4 Annotate
 
-> **Agent:** Present the plan to the user. The user may add `> NOTE:` annotations in plan.md. When they do:
+> **Agent:** Present the plan to the user. The user may add `> NOTE:` annotations in .claude/state/PLAN.md. When they do:
 >
-> `Address all notes in .claude/plan.md. Don't implement yet.`
+> `Address all notes in .claude/state/PLAN.md. Don't implement yet.`
 >
 > Repeat until the user confirms the plan is clean.
 
 ## 1.5 Role Review of Plan
 
-> **Agent:** For each role in .claude/agents/, spawn a subagent to review plan.md from that role's perspective against their acceptance criteria. Revise plan.md to address findings. Append review summary to .claude/state/logs/.
+> **Agent:** For each role in .claude/agents/, spawn a subagent to review .claude/state/PLAN.md from that role's perspective against their acceptance criteria. Revise .claude/state/PLAN.md to address findings. Append review summary to .claude/state/logs/.
 
 ## 1.6 Planning Gate
 
