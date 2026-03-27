@@ -2,7 +2,9 @@
 
 Initialize or onboard a project: set up git, audit existing work, establish Claude infrastructure, capture spec, and initialize state.
 
-> **Agent:** This is a disposable session. Your job is to set up infrastructure and get confirmation. You do not implement anything. You do not modify existing project files unless the user explicitly approves.
+> **Agent:** This is a disposable session. Your job is to set up Claude infrastructure and get confirmation — nothing else.
+>
+> **Scope:** Write only to `CLAUDE.md` and `.claude/`. Do not create, modify, or delete any other project files. If a file is outside those paths, it is out of scope — do not touch it, even to "help".
 
 ---
 

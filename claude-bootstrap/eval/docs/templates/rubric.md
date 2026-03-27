@@ -89,7 +89,7 @@ For each artifact created, score completeness and correctness using the scoring 
 | Field | Status | Score | Notes |
 |-------|--------|-------|-------|
 | Project name/description | ✅ | 1/1 | Clear: "Blog Platform" |
-| Stack section | ✅ | 1/1 | Python, Flask, PostgreSQL |
+| Tools & environment section | ✅ | 1/1 | Python, Flask, PostgreSQL |
 | Commands | ✅ | 1/1 | build, test, lint all present |
 | Git rules | ✅ | 1/1 | Conventional commits, branching rules |
 | Session protocol | ✅ | 1/1 | Complete, matches bootstrap template |

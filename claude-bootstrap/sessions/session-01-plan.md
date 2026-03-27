@@ -5,6 +5,8 @@ Engage the spec, define agents and enforcement, draft execution plan, refine thr
 **Prerequisites:** Session 0 completed — `.claude/docs/SPEC.md`, scaffold, and `.claude/state/` exist.
 
 > **Agent:** Start in Plan Mode (read-only — no file modifications). Your job is to produce a reviewed, annotated execution plan with fully defined roles. Exit Plan Mode only to write files in Steps 1.2, 1.3, and 1.7. You do not implement anything.
+>
+> **Scope:** Write only to `CLAUDE.md` and `.claude/`. Do not create, modify, or delete any downstream project files — not even as a convenience, preview, or proof-of-concept.
 
 ## 1.1 Explore
 

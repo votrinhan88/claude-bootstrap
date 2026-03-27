@@ -18,8 +18,8 @@ Runtime skill for managing `.claude/state/` — both CONTEXT.md (working memory)
 > **Agent:** Before doing any work:
 
 1. **Read** CONTEXT.md and the last 2-3 log entries
-2. **Verify** — compare Understanding entries against actual project state (`git log`, file reads, test runs). Mark any invalidated beliefs.
-3. **Detect drift** — `git log --oneline` since last log entry date; scan for modified files not captured in What Changed.
+2. **Verify** — compare Understanding entries against actual project state (`git log`, file reads, output/artifact checks). Mark any invalidated beliefs.
+3. **Detect drift** — `git log --oneline` since last log entry date (if git is enabled); scan for modified files not captured in What Changed.
 4. **Write What Changed** — populate the section with anything new (commits, human edits, external events).
 5. **Reconcile** — if drift invalidates Understanding entries, Decisions, or task states, update them before proceeding.
 

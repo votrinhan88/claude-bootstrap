@@ -22,7 +22,7 @@ git rev-parse --git-dir
 > **Agent:** Initialize and prepare for bootstrap.
 
 1. Run `git init`
-2. Create `.gitignore` appropriate for the project stack (infer from interview or ask)
+2. Create `.gitignore` appropriate for the project tools and environment (infer from interview or ask)
 3. Commit initial state:
 
 ```bash

@@ -28,7 +28,7 @@ When you encounter these signals, act as follows:
 
 | Signal                      | Action                                                                                                                                                    |
 | --------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Starting a session          | Read CONTEXT.md. Read last 2-3 entries in .claude/state/logs/ if needed. Verify against actual project state (git log, tests, files). Reconcile. |
+| Starting a session          | Read CONTEXT.md. Read last 2-3 entries in .claude/state/logs/ if needed. Verify against actual project state (git log, outputs/artifacts, files). Reconcile. |
 | Ending a session            | Curate CONTEXT.md (remove stale entries). Append handoff entry to .claude/state/logs/.                                                     |
 | Completing a plan phase     | Phase gate review. If git: squash-merge phase branch. Then fresh session.                                                                                 |
 | Resolving Tier 2 escalation | Fresh session.                                                                                                                                            |
@@ -51,7 +51,7 @@ Feedback loops for refining work in progress.
 Output is close but not right:
 
 1. Add `> NOTE:` inline in the file
-2. `Address all notes. Re-run relevant tests.`
+2. `Address all notes. Verify outputs.`
 3. Repeat until clean.
 
 ### Scrap and redo

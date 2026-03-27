@@ -28,7 +28,7 @@ For each role placeholder, derive the full agent definition from:
 Each role must:
 - **Represent a distinct stakeholder perspective** with its own priorities and values
 - **Create productive tension** with at least one other role (not every role needs to clash with every other, but no isolated roles)
-- **Have a clear definition** in `.claude/agents/[role].md` (see template in `claude-bootstrap/templates/agent.md`)
+- **Have a clear definition** in `.claude/agents/[role].md` (see template in `claude-bootstrap/docs/preset-templates/agent.md`)
 
 ---
 
@@ -61,6 +61,6 @@ These are illustrative, not prescriptive. Derive roles from *your* interview fin
 
 ## Outcome
 
-- All agent files fully defined (see `claude-bootstrap/templates/agent.md` for format)
+- All agent files fully defined (see `claude-bootstrap/docs/preset-templates/agent.md` for format)
 - Tensions defined in each agent file's `**Tensions**` section
 - Proceed to Session 1 Step 1.3 (Draft Plan)

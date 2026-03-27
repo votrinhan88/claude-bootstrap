@@ -20,7 +20,7 @@ Offloaded from Session 0a Step 3. Creates project directory structure with place
 
 | Path | Content |
 |------|---------|
-| `CLAUDE.md` | Root config: name, stack, commands, Git section (if enabled), session protocol. Rules: placeholder |
+| `CLAUDE.md` | Root config: name, tools and environment, commands, Git section (if enabled), session protocol. Rules: placeholder |
 | `.claude/docs/SPEC.md` | Full spec from interview: Purpose, Success Criteria, Scope, Constraints, Quality, Failure Modes, Delivery |
 | `.claude/agents/orchestrator.md` | Placeholder (defined in Step 4) |
 | `.claude/agents/` | Empty directory (role placeholders created in Step 4) |

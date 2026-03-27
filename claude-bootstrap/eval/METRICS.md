@@ -60,7 +60,7 @@ For each artifact, score completeness and correctness:
 | Field | Required | Presence | Correctness | Score |
 |-------|----------|----------|-------------|-------|
 | Project name/description | Yes | ✅ | ✅ | 1 |
-| Stack section | Yes | ✅ | ⚠️ (vague) | 0.5 |
+| Tools & environment section | Yes | ✅ | ⚠️ (vague) | 0.5 |
 | Commands (build, test) | Yes | ✅ | ✅ | 1 |
 | Git rules (if git enabled) | Yes | ✅ | ✅ | 1 |
 | Session protocol | Yes | ✅ | ✅ | 1 |
@@ -275,7 +275,7 @@ When documenting a simulation result, include:
 ## Artifacts
 | Artifact | Score | Notes |
 |----------|-------|-------|
-| CLAUDE.md | 92% | Stack section vague |
+| CLAUDE.md | 92% | Tools & environment section vague |
 | SPEC.md | 95% | Success criteria clear |
 | Agents | 87% | Tension map unclear |
 | CONTEXT.md | 100% | Complete |
@@ -336,7 +336,7 @@ After each batch of simulations, aggregate results:
 - Existing projects hit blockers at: [step]
 - Integration modes: [which works best]
 
-## Recommendations for Phase 2
+## Recommendations
 
 1. Fix [critical blocker]
 2. Rewrite [unclear section]

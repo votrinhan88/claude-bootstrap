@@ -1,6 +1,6 @@
 # Claude Code Bootstrap
 
-An opinionated methodology layer for Claude Code.
+An opinionated, role-driven methodology layer for Claude Code.
 
 Adds structured sessions, persistent state, and role-based agents on top of what Claude Code already provides — so your project stays organized and on track as it grows.
 

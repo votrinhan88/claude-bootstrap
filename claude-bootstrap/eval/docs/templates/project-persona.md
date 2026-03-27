@@ -1,7 +1,7 @@
 Project axis:
 
-Starting state (greenfield / existing code / existing code + existing conventions)
-Complexity (single concern / multi-service / ambiguous scope)
+Starting state (greenfield / existing work / existing work + existing conventions)
+Complexity (single concern / multi-component / ambiguous scope)
 Has a CLAUDE.md already or not
 
 ## Project Definition
@@ -13,9 +13,9 @@ Has a CLAUDE.md already or not
 
 ### Complexity Level
 
-- [ ] Simple (single-file script, clear purpose)
-- [ ] Medium (monolith, 5-10 files, some patterns)
-- [ ] Complex (multi-file, multiple stakeholders, existing patterns)
+- [ ] Simple (single concern, clear scope)
+- [ ] Medium (moderate scope, multiple components)
+- [ ] Complex (broad scope, multiple stakeholders, existing conventions)
 
 ### Project Details
 
@@ -23,7 +23,7 @@ Has a CLAUDE.md already or not
 
 **Description:** {One-line description of what the project does}
 
-**Stack:** {Language, framework, key dependencies}
+**Tools & environment:** {Primary tools, languages, frameworks, dependencies, or platforms}
 
 **Initial State:**
 - Files/directories to pre-create: {list}

@@ -98,7 +98,7 @@ eval/
 
 When reviewing a simulation result, check these were created correctly:
 
-- [ ] `.claude/CLAUDE.md` — root config with stack, commands, rules
+- [ ] `.claude/CLAUDE.md` — root config with tools and environment, commands, rules
 - [ ] `.claude/docs/SPEC.md` — spec from interview (purpose, scope, constraints, etc.)
 - [ ] `.claude/agents/` — orchestrator + role agents with clear responsibilities
 - [ ] `.claude/agents/*/acceptance-criteria` — each role has decision criteria
