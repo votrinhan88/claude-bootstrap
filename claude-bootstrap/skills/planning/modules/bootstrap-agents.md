@@ -2,14 +2,14 @@
 
 > **Note:** This skill is a placeholder — content is incomplete.
 
-Derive and define project-specific agent roles during Session 1, Step 1.2 (after spec exploration, before plan draft).
+Derive and define project-specific agent roles during Planning session, Step 1.2 (after spec exploration, before plan draft).
 
 ---
 
 ## Prerequisites
 
-- Session 0 completed — `.claude/docs/SPEC.md` and interview handoff exist
-- Session 1 Step 1.1 Explore completed — spec findings surfaced and confirmed
+- Bootstrap session completed — `.claude/docs/SPEC.md` and interview handoff exist
+- Planning session Step 1.1 Explore completed — spec findings surfaced and confirmed
 - `.claude/agents/` directory exists (created by scaffold)
 
 ---
@@ -63,4 +63,4 @@ These are illustrative, not prescriptive. Derive roles from *your* interview fin
 
 - All agent files fully defined (see `claude-bootstrap/docs/preset-templates/agent.md` for format)
 - Tensions defined in each agent file's `**Tensions**` section
-- Proceed to Session 1 Step 1.3 (Draft Plan)
+- Proceed to Planning session Step 1.3 (Draft Plan)

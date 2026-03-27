@@ -1,9 +1,9 @@
 ---
 name: role-name
 description: When to invoke — orchestrator uses this for routing
-tier: [high | low]
+tier: [high | low]  # orchestrator resolves to model via CLAUDE_TIER_* env vars in .claude/settings.json
 tools: [comma-separated list — scope to this role's authority]
-metadata:
+metadata:  # drop any fields if not applicable
   reads: [none | paths | all]
   writes: [none | paths | all]
   invokes:
@@ -33,6 +33,7 @@ What this role verifies before its output is considered done
 - ...
 
 ## Watches For
+- Do not write directly to `.claude/state/` — report back to the orchestrator
 - [role-specific pattern] → [response]
 - ...
 

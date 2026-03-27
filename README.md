@@ -16,15 +16,15 @@ Read STARTUP.md and follow the instructions.
 
 The agent will interview you, scaffold your project infrastructure, and walk you through:
 
-- **Session 0:** Bootstrap — capture intent, define agents, initialize state
-- **Session 1:** Planning — draft and review a phased execution plan
-- **Session 2+:** Implementation — orchestrate with configurable autonomy
+- **Bootstrap session:** capture intent, define agents, initialize state
+- **Planning session:** draft and review a phased execution plan
+- **Runtime sessions:** orchestrate with configurable autonomy
 
 ## Commands
 
 | Command                                | Purpose                            |
 | -------------------------------------- | ---------------------------------- |
-| `/bootstrap`                           | Run Session 0 on a new project     |
+| `/bootstrap`                           | Run Bootstrap session on a new project |
 | `/orchestrate [--auto [--skip-gates]]` | Task execution with autonomy modes |
 | `/set-models max \| default \| min`    | Switch model tiers                 |
 | `/health`                              | Project status dashboard           |
@@ -46,7 +46,7 @@ your-project/.claude/
 ├── hooks/
 └── state/
     ├── CONTEXT.md       # Working memory (curated each session)
-    ├── PLAN.md          # Execution plan (Session 1+)
+    ├── PLAN.md          # Execution plan (Planning session+)
     └── logs/            # Append-only session logs
 ```
 

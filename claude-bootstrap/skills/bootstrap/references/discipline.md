@@ -1,24 +1,14 @@
-# Session 0 — Bootstrap
+# Bootstrap Phase Discipline
 
 Initialize or onboard a project: set up git, audit existing work, establish Claude infrastructure, capture spec, and initialize state.
 
-> **Agent:** This is a disposable session. Your job is to set up Claude infrastructure and get confirmation — nothing else.
+## Phase Discipline
+
+> **Agent:** This is a disposable phase. Your job is to set up Claude infrastructure and get confirmation — nothing else.
 >
 > **Scope:** Write only to `CLAUDE.md` and `.claude/`. Do not create, modify, or delete any other project files. If a file is outside those paths, it is out of scope — do not touch it, even to "help".
 
----
-
-## Step 1: Git Setup
-
-> **Agent:** Run the git skill: `claude-bootstrap/skills/bootstrap/bootstrap-git.md`
->
-> The skill will ask: use git? If yes, how much to track?
-
-**Outcome:** Git is initialized or confirmed. `.gitignore` is configured. Branching mode is decided. Decisions recorded in `.claude/config.yml` under `git:`.
-
----
-
-## Step 2: Audit
+## Step 1: Audit (Existing Projects Only)
 
 > **Agent:** Skip this step if the project is new. Run only for existing projects.
 >
@@ -30,9 +20,19 @@ Initialize or onboard a project: set up git, audit existing work, establish Clau
 
 ---
 
+## Step 2: Git Setup
+
+> **Agent:** Run the git skill: `claude-bootstrap/skills/bootstrap/bootstrap-git.md`
+>
+> The skill will ask: use git? If yes, how much to track?
+
+**Outcome:** Git is initialized or confirmed. `.gitignore` is configured. Branching mode is decided. Decisions recorded in `.claude/config.yml` under `git:`.
+
+---
+
 ## Step 3: Claude Integration Mode
 
-> **Agent:** Skip this step if: (a) the project is new, or (b) no `.claude/` directory was found in Step 2.
+> **Agent:** Skip this step if: (a) the project is new, or (b) no `.claude/` directory was found in Step 1.
 >
 > Run the integration-mode skill: `claude-bootstrap/skills/bootstrap/bootstrap-integration.md`
 >
@@ -90,9 +90,9 @@ Initialize or onboard a project: set up git, audit existing work, establish Clau
 >    - Decisions: all choices made during bootstrap (git, branching, integration mode)
 >    - Constraints: hard limits discovered during interview
 >    - Open Issues: any low-confidence areas flagged during bootstrap
->    - Leave Understanding, What Changed, and Tasks sections empty — they activate in Session 1+
-> 2. **Write the first log entry** — a `handoff` entry to `.claude/state/logs/` summarizing the full Session 0 bootstrap
->
+>    - Leave Understanding, What Changed, and Tasks sections empty — they activate in Planning phase
+> 2. **Write the first log entry** — a `handoff` entry to `.claude/state/logs/` summarizing the full Bootstrap phase
+
 > Then present a summary to the user:
 > - Git configuration chosen
 > - Integration mode chosen (if existing project) and what was done
@@ -107,6 +107,4 @@ Initialize or onboard a project: set up git, audit existing work, establish Clau
 
 ---
 
-**Session 0 ends here. Close this session.**
-
----
+**Bootstrap phase ends here. Next: run `/planning` skill for Planning phase (agent definition and execution planning).**

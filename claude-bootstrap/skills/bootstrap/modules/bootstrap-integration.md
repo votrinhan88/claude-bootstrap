@@ -1,12 +1,12 @@
 # Bootstrap Integration
 
-Choose how to integrate the Bootstrap framework with an existing `.claude/` directory. Run during Session 0, Step 3 for existing projects with existing Claude config.
+Choose how to integrate the Bootstrap framework with an existing `.claude/` directory. Run during Bootstrap session, Step 3 for existing projects with existing Claude config.
 
 ---
 
 ## Prerequisites
 
-- Audit completed (Session 0, Step 2)
+- Audit completed (Bootstrap session, Step 2)
 - `.claude/` directory exists
 - User is available to choose and confirm
 

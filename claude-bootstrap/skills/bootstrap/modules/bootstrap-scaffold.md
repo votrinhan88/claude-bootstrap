@@ -2,7 +2,7 @@
 
 > **Note:** This skill is a placeholder — content is incomplete.
 
-Offloaded from Session 0a Step 3. Creates project directory structure with placeholders. Does not define roles — that happens in Step 4.
+Offloaded from Bootstrap session Step 3. Creates project directory structure with placeholders. Does not define roles — that happens in Step 4.
 
 ---
 

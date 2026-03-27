@@ -7,8 +7,8 @@ Agent bootstrap routine. Scaffold project infrastructure, define roles, and esta
 ## Flow
 
 1. **Interview** → Invoke [`bootstrap.md`](claude-bootstrap/skills/bootstrap.md) skill
-2. **Execute** → Read and follow [`session-00-bootstrap.md`](claude-bootstrap/sessions/session-00-bootstrap.md) through completion
-3. **Repeat** → Next session (Session 1, then Session 2+)
+2. **Execute** → Read and follow [`session-bootstrap.md`](claude-bootstrap/sessions/session-bootstrap.md) through completion
+3. **Repeat** → Next session (Planning session)
 
 ---
 
@@ -21,11 +21,9 @@ Agent bootstrap routine. Scaffold project infrastructure, define roles, and esta
 - State: [`bootstrap/bootstrap-state.md`](claude-bootstrap/skills/bootstrap/bootstrap-state.md)
 - Agents: [`bootstrap/bootstrap-agents.md`](claude-bootstrap/skills/bootstrap/bootstrap-agents.md)
 - Hooks: [`bootstrap/bootstrap-hooks.md`](claude-bootstrap/skills/bootstrap/bootstrap-hooks.md)
-- Runtime: [`bootstrap/bootstrap-runtime.md`](claude-bootstrap/skills/bootstrap/bootstrap-runtime.md)
 
 **Sessions:**
-- 0 (bootstrap): [`sessions/session-00-bootstrap.md`](claude-bootstrap/sessions/session-00-bootstrap.md) — Set up git, audit existing work, establish Claude infrastructure, define agents, initialize state.
-- 1 (planning): [`sessions/session-01-PLAN.md`](claude-bootstrap/sessions/session-01-PLAN.md) — Explore spec, draft execution plan with role ownership and validation gates, refine through role review.
-- 2+ (implementation): [`sessions/session-02-implement.md`](claude-bootstrap/sessions/session-02-implement.md) — Execute plan phases with orchestrated role agents, intervene at phases/blockers, manage state and logs.
+- Bootstrap session: [`sessions/session-bootstrap.md`](claude-bootstrap/sessions/session-bootstrap.md) — Set up git, audit existing work, establish Claude infrastructure, define agents, initialize state.
+- Planning session: [`sessions/session-planning.md`](claude-bootstrap/sessions/session-planning.md) — Explore spec, draft execution plan with role ownership and validation gates, refine through role review.
 
 **User reference:** [`README.md`](README.md)

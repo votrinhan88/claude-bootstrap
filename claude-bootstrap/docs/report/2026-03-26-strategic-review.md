@@ -10,9 +10,9 @@ Claude Bootstrap is a methodology layer for Claude Code that adds discipline on 
 
 The framework is organized into three sessions:
 
-- **Session 0 — Bootstrap**: git setup, project audit, interview, scaffold, agent definition, state initialization
-- **Session 1 — Planning**: spec exploration, phased plan drafting, quality pre-flight, role review, planning gate
-- **Session 2+ — Implementation**: orchestrated phase execution, spec drift detection, phase gates, blocker escalation, pivot protocol
+- **Bootstrap session**: git setup, project audit, interview, scaffold, agent definition, state initialization
+- **Planning session**: spec exploration, phased plan drafting, quality pre-flight, role review, planning gate
+- **Runtime sessions**: orchestrated phase execution, spec drift detection, phase gates, blocker escalation, pivot protocol
 
 ---
 
@@ -33,11 +33,11 @@ The framework does not compete with CrewAI, AutoGen, or LangGraph. Those are gen
 
 ### FOSS Tool Overlap by Session
 
-**Session 0** — Mostly original. No FOSS tool runs an audit → interview → role-derivation pipeline as a structured setup ceremony. MetaGPT is closest but its interview is shallower and produces no tension map.
+**Bootstrap session** — Mostly original. No FOSS tool runs an audit → interview → role-derivation pipeline as a structured setup ceremony. MetaGPT is closest but its interview is shallower and produces no tension map.
 
-**Session 1** — Medium overlap. Phased planning with role ownership exists in MetaGPT. The pre-flight self-validation (is every phase testable? owned? scoped?) and multi-role plan review as a formal pre-implementation gate are original.
+**Planning session** — Medium overlap. Phased planning with role ownership exists in MetaGPT. The pre-flight self-validation (is every phase testable? owned? scoped?) and multi-role plan review as a formal pre-implementation gate are original.
 
-**Session 2** — Most original. Spec drift enforcement, the pivot protocol, model tier routing by role, and multi-perspective phase gates after every phase do not exist in any FOSS tool.
+**Runtime session** — Most original. Spec drift enforcement, the pivot protocol, model tier routing by role, and multi-perspective phase gates after every phase do not exist in any FOSS tool.
 
 ### Genuinely Original Features
 
@@ -75,7 +75,7 @@ This framework adds the discipline layer Claude Code doesn't ship with: a setup 
 
 - The evaluation framework — not a focus yet
 - Tension mechanics in detail — introduce as a benefit ("catches blind spots"), not a mechanism
-- Session 0's 8-step structure — frame it as "a one-time setup that takes one session"
+- The Bootstrap session's 8-step structure — frame it as "a one-time setup that takes one session"
 
 ### Honest Constraint
 
@@ -101,17 +101,17 @@ The framework's core concepts (spec, plan, agents, phases, state) are already do
 
 | Location              | Assumption                                                  | Replacement                                             |
 | --------------------- | ----------------------------------------------------------- | ------------------------------------------------------- |
-| Session 0, Step 1     | Git is the versioning tool                                  | "Version control" — optional, git is one option         |
-| Session 0, Step 4     | Interview asks about "stack"                                | Ask about "tools and environment"                       |
-| Session 0 throughout  | "project files", "codebase"                                 | "project artifacts"                                     |
-| Session 1, Step 3     | "Does any phase touch more than 7 files?"                   | Remove or make domain-configurable                      |
-| Session 1, Step 3     | "test, review, or check"                                    | "verify, review, or check"                              |
-| Session 2             | "git log, file system, test results" for state verification | "artifact inventory, logs, and checks"                  |
-| Session 2, Phase gate | Implicitly assumes tests as validation                      | "Validation method defined per phase"                   |
+| Bootstrap session, Step 1     | Git is the versioning tool                                  | "Version control" — optional, git is one option         |
+| Bootstrap session, Step 4     | Interview asks about "stack"                                | Ask about "tools and environment"                       |
+| Bootstrap session throughout  | "project files", "codebase"                                 | "project artifacts"                                     |
+| Planning session, Step 3     | "Does any phase touch more than 7 files?"                   | Remove or make domain-configurable                      |
+| Planning session, Step 3     | "test, review, or check"                                    | "verify, review, or check"                              |
+| Runtime session             | "git log, file system, test results" for state verification | "artifact inventory, logs, and checks"                  |
+| Runtime session, Phase gate | Implicitly assumes tests as validation                      | "Validation method defined per phase"                   |
 | Health skill          | "Git Status" section                                        | Make optional, gated on git being in use                |
 | bootstrap-git.md      | Entire skill assumes git                                    | Make pluggable — one of several version control options |
 
-**Addition to Session 0 interview**: add **domain** as a first-class question — _"What kind of project is this? (software, research, writing, design, other)"_ — and let the answer shape which bootstrap sub-skills activate.
+**Addition to Bootstrap session interview**: add **domain** as a first-class question — _"What kind of project is this? (software, research, writing, design, other)"_ — and let the answer shape which bootstrap sub-skills activate.
 
 ---
 
@@ -146,8 +146,8 @@ Evaluation is a future differentiator, not a current focus. A framework that can
 ## 6. Priority Order
 
 1. Audit and patch all code-specific assumptions (Path B changes)
-2. Complete Session 1
-3. Complete Session 2
+2. Complete Planning session
+3. Complete Runtime session
 4. Add Session 3 (closure)
 5. Write `eval/DESIGN.md` in parallel with steps 2–4
 6. Implement evaluation against the completed framework

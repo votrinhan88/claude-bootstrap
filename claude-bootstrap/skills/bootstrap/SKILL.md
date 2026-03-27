@@ -1,50 +1,61 @@
+---
+name: bootstrap
+description: User-only. Entry point for Bootstrap session — initialize project infrastructure, establish Claude config, and capture initial spec.
+user-invocable: true
+metadata:
+  reads: all
+  writes: [.claude/, CLAUDE.md]
+  authors: [votrinhan88]
+  version: 0.1
+---
+
 # Bootstrap
+Entry point for Bootstrap session (infrastructure + spec). Initialize git, audit existing work (if any), establish Claude infrastructure, and gather project spec.
 
-Entry point for Session 0. Guides users through project initialization.
+## Steps
 
----
+**New project:**
+1. **Git setup** — run `bootstrap-git`
+2. **Interview** — run `bootstrap-interview` to gather project context and preferences
+3. **Scaffold** — run `bootstrap-scaffold` to create `.claude/` directory structure
+4. **State init** — run `bootstrap-state` to initialize CONTEXT.md, log templates, and state system
+5. **Gate** — run Bootstrap session gate per `sessions/session-bootstrap.md` Step 7
 
-## How to Use
+**Existing project:**
+1. **Audit** — run `bootstrap-audit` to assess current state
+2. **Git setup** — run `bootstrap-git`
+3. **Mode choice** — run `bootstrap-integration` to determine integration mode
+4. **Interview** — run `bootstrap-interview`
+5. **Scaffold** — run `bootstrap-scaffold`
+6. **State init** — run `bootstrap-state`
+7. **Gate** — run Bootstrap session gate per `sessions/session-bootstrap.md` Step 7
 
-1. Start a new Claude Code session in your project directory
-2. Run this skill (`claude-bootstrap/skills/bootstrap.md`)
-3. Agent invokes the interview to determine project context
-4. Routes to appropriate bootstrap flow (new or existing project)
+## Examples
 
----
+- **Input:** `/bootstrap` on a fresh directory with no git history
+- **Output:** Runs new-project Bootstrap session flow → `.claude/` scaffolded, CONTEXT.md initialized, gate passed; ready for Planning session
 
-## Agent Flow
+- **Input:** `/bootstrap` on an existing project with a `.claude/` directory already present
+- **Output:** Runs audit → git setup → integration mode selected → interview fills gaps → scaffold merges → gate passed
 
-**Session 0** (infrastructure + spec):
-- New project: git-setup → interview → scaffold → state → gate
-- Existing project: git-setup → audit → mode-choice → interview → scaffold → state → gate
+## Edge Cases
 
-**Session 1** (roles + plan):
-- Explore spec → define agents → draft plan → pre-flight → annotate → role review → hooks & rules → gate
+- No git initialized: `bootstrap-git` handles setup; if user declines git, document in CONTEXT.md Constraints and skip git-dependent steps
+- `.claude/` already exists: `bootstrap-audit` detects it; `bootstrap-integration` determines merge vs. reset vs. skip
+- Bootstrap session gate fails: stop and surface blockers to user — do not proceed to Planning session until gate passes
 
----
+## Resources
 
-## Skills
+### Modules
+- `bootstrap-git.md` — git configuration and workflow setup
+- `bootstrap-audit.md` — assess existing project state (existing-project path)
+- `bootstrap-integration.md` — determine integration mode (existing-project path)
+- `bootstrap-interview.md` — gather project context and preferences
+- `bootstrap-scaffold.md` — create `.claude/` directory structure
+- `bootstrap-state.md` — initialize CONTEXT.md, state system, and log templates
 
-| Skill | Purpose |
-|-------|---------|
-| [bootstrap-interview](bootstrap/bootstrap-interview.md) | Gather project context and preferences |
-| [bootstrap-git](bootstrap/bootstrap-git.md) | Git configuration and workflow setup |
-| [bootstrap-scaffold](bootstrap/bootstrap-scaffold.md) | Create `.claude/` directory structure |
-| [bootstrap-state](bootstrap/bootstrap-state.md) | Initialize CONTEXT.md, state system, and log templates |
-| [bootstrap-agents](bootstrap/bootstrap-agents.md) | Define project-specific agents (Session 1, Step 1.2) |
-| [bootstrap-hooks](bootstrap/bootstrap-hooks.md) | Create hooks and rules (Session 1, Step 1.7) |
-| [bootstrap-runtime](bootstrap/bootstrap-runtime.md) | Session discipline and operational signals |
+### References
+- `discipline.md` — complete Bootstrap phase step-by-step execution guide
 
----
-
-## Session 0 Gate
-
-> **Agent:** Run `session-00-bootstrap.md` Step 7. State population, handoff log, and user confirmation are all handled there.
-
----
-
-## Next Steps
-
-After Session 0 gate passes:
-- Proceed to Session 1 (Planning) in `session-01-plan.md`
+### Next Phase
+See `/planning` skill for Planning phase (agent definition and execution planning).

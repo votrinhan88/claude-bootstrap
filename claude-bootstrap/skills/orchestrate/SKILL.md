@@ -1,6 +1,6 @@
 ---
 name: orchestrate
-description: "User-only. Entry point for Session 2+ implementation phases — dispatch plan tasks to role-agents, run phase gates, and close sessions."
+description: "User-only. Entry point for Runtime sessions — dispatch plan tasks to role-agents, run phase gates, and close sessions."
 user-invocable: true
 metadata:
   reads: all
@@ -17,18 +17,18 @@ Dispatches plan tasks to role-agents, runs phase gates, and closes sessions.
 
 ## Steps
 
-1. **Orient** — follow the session start protocol in `modules/state-control.md`
+1. **Orient** — run the session start protocol using the `state-control` skill
 2. **Execute the next task**
-   a. Select next task from PLAN.md and identify owning role
-   b. Spawn role-agent as subagent with task scope
-   c. Agent executes → returns summary
-   d. Advance task status in CONTEXT.md, append to `logs/`, present summary
-   e. Hard stop check: if blocker or Tier 2 escalation → stop
-   f. Gate stop check: else if phase boundary → run phase gate (Step 3); `--skip-gates` skips the gate; if `--auto` → loop to a, else stop
-   g. Yield: else if `--auto` → loop to b (same role) or a (different role); else stop
+  a. Select next task from PLAN.md and identify owning role
+  b. Spawn role-agent as subagent with task scope
+  c. Agent executes → returns summary
+  d. Advance task status in CONTEXT.md, append to `logs/`, present summary
+  e. Hard stop check: if blocker or Tier 2 escalation → stop
+  f. Gate stop check: else if phase boundary → run phase gate (Step 3); `--skip-gates` skips the gate; if `--auto` → loop to a, else stop
+  g. Yield: else if `--auto` → loop to b (same role) or a (different role); else stop
 3. **Run phase gate** — at each phase boundary, before proceeding
-   - See `modules/gates.md` for full gate and conflict resolution protocol
-4. **Close session** — follow the session end protocol in `modules/state-control.md`
+  - See `modules/gates.md` for full gate and conflict resolution protocol
+4. **Close session** — run the session end protocol using the `state-control` skill
 
 ## Examples
 
@@ -48,7 +48,6 @@ Dispatches plan tasks to role-agents, runs phase gates, and closes sessions.
 ### `modules/`
 - `gates.md` — phase gate review, blockers, and conflict resolution
 - `scaling.md` — worktrees, subagents, and agent teams
-- `state-control.md` — session start/end protocol and CONTEXT.md section guide
 
 ### `references/`
 - `escalation.md` — escalation tier definitions (Tier 1: agent-resolvable; Tier 2: human decision required)

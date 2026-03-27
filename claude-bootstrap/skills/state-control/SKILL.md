@@ -1,3 +1,17 @@
+---
+name: state-control
+description: Manage .claude/state/ — session start verification, CONTEXT.md curation, and log entry writing. Invoked by orchestrate and health at session boundaries.
+user-invocable: false
+metadata:
+  reads: [.claude/state/]
+  writes: [.claude/state/]
+  invokes:
+    skills: []
+    agents: []
+  authors: [votrinhan88]
+  version: 0.1
+---
+
 # State Control
 
 Runtime skill for managing `.claude/state/` — both CONTEXT.md (working memory) and logs/ (append-only history). These are two views of the same state: CONTEXT.md is what's true *now*; logs record *how we got here*.
@@ -7,13 +21,9 @@ Runtime skill for managing `.claude/state/` — both CONTEXT.md (working memory)
 
 ---
 
-## Budget
+## Steps
 
-.
-
----
-
-## Session Start
+### Session Start
 
 > **Agent:** Before doing any work:
 
@@ -23,31 +33,24 @@ Runtime skill for managing `.claude/state/` — both CONTEXT.md (working memory)
 4. **Write What Changed** — populate the section with anything new (commits, human edits, external events).
 5. **Reconcile** — if drift invalidates Understanding entries, Decisions, or task states, update them before proceeding.
 
----
-
-## Session End
+### Session End
 
 > **Agent:** At the end of every session or at phase boundaries:
 
-### 1. Curate CONTEXT.md
-
-1. **Update Status** — rewrite to reflect current reality in 1-2 sentences
-2. **Curate Understanding** — add confirmed learnings, remove invalidated beliefs
-3. **Clear What Changed** — it served its purpose
-4. **Advance Tasks**:
-   - Move finished work to Completed (keep only the 5 most recent; older → log ref)
-   - Remove resolved blockers from Blocked
-   - Promote queued work as appropriate
-5. **Review Decisions** — any decision older than 5 sessions: still valid? Downgrade confidence or move to Open Issues if uncertain
-6. **Budget** — CONTEXT.md must stay under **50 lines of content**. Else move detail to a log entry, leave a reference
-
-### 2. Write log entry
-
-Append a new file to `.claude/state/logs/` using the project's log templates in `.claude/docs/templates/logs/`.
-
-- Most session ends produce a `handoff` entry; use `decision`, `issue`, or `review` as events warrant
-- Append-only — never edit old log entries
-- One file per entry, one entry per file
+1. **Curate CONTEXT.md**
+   1. **Update Status** — rewrite to reflect current reality in 1-2 sentences
+   2. **Curate Understanding** — add confirmed learnings, remove invalidated beliefs
+   3. **Clear What Changed** — it served its purpose
+   4. **Advance Tasks**:
+      - Move finished work to Completed (keep only the 5 most recent; older → log ref)
+      - Remove resolved blockers from Blocked
+      - Promote queued work as appropriate
+   5. **Review Decisions** — any decision older than 5 sessions: still valid? Downgrade confidence or move to Open Issues if uncertain
+   6. **Budget** — CONTEXT.md must stay under **50 lines of content**. Else move detail to a log entry, leave a reference
+2. **Write log entry** — append a new file to `.claude/state/logs/` using the project's log templates in `.claude/docs/templates/logs/`
+   - Most session ends produce a `handoff` entry; use `decision`, `issue`, or `review` as events warrant
+   - Append-only — never edit old log entries
+   - One file per entry, one entry per file
 
 ---
 

@@ -39,7 +39,6 @@ The only Claude file at root. Loads every session automatically.
 - Log entries: .claude/state/logs/{date}_{seq}_{type}.md
 - On compaction: preserve modified file list, current plan step,
   unresolved blockers
-- Operational signals: see `.claude/skills/bootstrap-runtime.md`
 ```
 
 **Budget:** ~50 of ~150-200 instruction slots consumed by system prompt. Every line competes. Move domain knowledge to `.claude/skills/`, enforcement to `.claude/hooks/`.

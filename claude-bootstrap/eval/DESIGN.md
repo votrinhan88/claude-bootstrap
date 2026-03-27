@@ -91,7 +91,7 @@ Current artifacts to validate:
 - `agents/` — roles defined, tensions mapped
 - `state/CONTEXT.md` — status, decisions, constraints
 - `state/logs/` — interview handoff present, correct format
-- `state/PLAN.md` — phases, owners, validation steps (Session 1+)
+- `state/PLAN.md` — phases, owners, validation steps (Planning session+)
 
 ---
 
@@ -115,7 +115,7 @@ Below 75% means something structural is broken.
 |-----|--------|----------|
 | No non-software test scenarios exist yet | Domain-agnosticism is untested | High |
 | Session 3 (closure) doesn't exist — lifecycle has no "done" state | Can't test end-to-end | High |
-| Several skills are placeholders — bootstrap-scaffold, bootstrap-agents | Sessions 0–1 completion rate will be low | High |
+| Several skills are placeholders — bootstrap-scaffold, bootstrap-agents | Bootstrap and Planning session completion rate will be low | High |
 | Duplicate file structure (`eval/` vs `eval/docs/`) — unclear which is canonical | Confusion during evaluation runs | Medium |
 | `eval/docs/METRICS.md` duplicates `eval/METRICS.md` | Drift risk | Medium |
 
@@ -126,8 +126,8 @@ Below 75% means something structural is broken.
 Evaluation should be implemented after Sessions 1–2 are content-complete:
 
 1. **Now:** Design (this file) — disciplines remaining skill authoring
-2. **After Sessions 0–1 content complete:** Write 3 baseline test scenarios (software new, software existing, non-software new)
-3. **After Session 2 content complete:** Run first simulation batch; record results
+2. **After Bootstrap and Planning session content complete:** Write 3 baseline test scenarios (software new, software existing, non-software new)
+3. **After runtime content complete:** Run first simulation batch; record results
 4. **Before release:** Full matrix coverage; ≥90% on all baseline scenarios
 
 ---

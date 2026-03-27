@@ -1,111 +1,88 @@
+---
+name: bootstrap-audit
+description: Agent-only. Analyze existing project structure, tools, conventions, and gaps. Run during Bootstrap session, Step 2 for existing projects only.
+user-invocable: false
+metadata:
+  reads: all
+  writes: none
+  authors: [votrinhan88]
+  version: 0.1
+---
+
 # Bootstrap Audit
+Audit an existing project to understand tools, environment, conventions, and gaps for framework integration.
 
-Analyze an existing project to understand tools and environment, conventions, infrastructure, and gaps. Run during Session 0, Step 2 for existing projects only.
+## Steps
+1. **Explore structure** — read project directory layout
+  - Root files (README, package.json, Dockerfile, .gitignore, etc.)
+  - Language & framework (infer from extensions, imports, package managers)
+  - Directory conventions (src/, tests/, docs/, etc.)
+  - Existing `.claude/` directory presence and contents
+2. **Identify tools & environment** — document primary tools, build/run process, dependencies, automation, source control
+3. **Audit existing Claude config** (if `.claude/` exists) — review agents/, skills/, hooks/, rules/, CLAUDE.md, state files (CONTEXT.md, PLAN.md, logs/)
+4. **Identify conventions** — commit style, style conventions, documentation location, issue tracking patterns
+5. **Assess gaps** — missing spec, prioritized todo list, failure modes, or build clarity
+6. **Present findings to user** — show audit summary; ask for corrections
+7. **Confirm understanding** — user verifies tools, conventions, `.claude/` status, and integration mode decision
 
----
+## Examples
 
-## Prerequisites
+**Software dev (new project, no `.claude/`):**
+- Tools: Node.js, React, Jest, GitHub
+- Conventions: Conventional commits, GitHub Issues
+- `.claude/`: does not exist
+- Gaps: No formal spec, unclear roadmap
+- Recommendation: New project mode
 
-- Project directory exists and is accessible
-- User is available to confirm/correct findings
+**AI/ML paper (existing project, local latex, no `.claude/`):**
+- Tools: Python, LaTeX, Jupyter, local filesystem
+- Conventions: Manual versioning, overleaf-style comments in .tex files
+- `.claude/`: does not exist
+- Gaps: No build automation, version control unclear, no issue tracking
+- Recommendation: Existing + Migrate
 
----
+**Personal knowledge management (existing with `.claude/`):**
+- Tools: Markdown, Obsidian, local git, custom scripts
+- Conventions: Atomic notes, backlinks, no formal commit style
+- `.claude/`: exists with agents/, skills/, CONTEXT.md, PLAN.md
+- Gaps: Outdated PLAN.md, no recent logs, custom conventions not formalized
+- Recommendation: Existing + Extend
 
-## Procedure
+## Edge Cases
 
-> **Agent:** Follow this workflow to audit the project. Do not modify any files — this is read-only analysis.
+- **No `.claude/` directory:** Audit proceeds normally; integration mode deferred to bootstrap-integration
+- **`.claude/` exists but incomplete:** Report what's present; note gaps in agents, skills, state structure
+- **Conflicting conventions:** Document what's observed; user clarifies preference during bootstrap-interview
+- **No git initialized:** Note; Bootstrap session bootstrap-git step handles initialization if user elects git
+- **Unclear build process:** Report what's observable (scripts in package.json, Makefile, etc.); user fills in during interview
 
-### 1. Explore Structure
+## Resources
 
-Read the project directory layout. Identify:
-- **Root files:** README, package.json, Dockerfile, .gitignore, etc.
-- **Language & framework:** Infer from file extensions, imports, package managers
-- **Directory convention:** src/, tests/, docs/, etc.
-- **Existing `.claude/` directory?** Note if present and describe its contents
+### audit-summary schema
 
-### 2. Identify Tools & Environment
+Return all findings to bootstrap skill as a structured dict:
 
-Document:
-- **Primary tools:** Main tools, languages, frameworks, or platforms in use
-- **Build/run process:** How work is executed or validated
-- **Dependencies:** Package manager, external services, runtimes
-- **Automation:** CI/CD, scheduled tasks, pipelines, or equivalent
-- **Source control:** Git workflow (if applicable)
-
-### 3. Audit Existing Claude Config (if `.claude/` found)
-
-If `.claude/` exists, read its structure and report:
-- What's in `.claude/agents/`, `.claude/skills/`, `.claude/hooks/`, `.claude/rules/`?
-- Is there a CLAUDE.md or SPEC.md?
-- Any state files (CONTEXT.md, PLAN.md, logs/)?
-- Any existing hooks or rules?
-
-### 4. Identify Conventions
-
-Look for patterns in existing work:
-- **Commit style:** Conventional commits? Squash or merge? Branching pattern? (if git is used)
-- **Style conventions:** Formatting, linting, naming patterns?
-- **Documentation:** Where do users/contributors go first? Wiki? README?
-- **Issue tracking:** GitHub Issues, Linear, Jira, or other?
-
-### 5. Assess Gaps
-
-Note what's missing or unclear:
-- Is there a spec document or clear vision?
-- Is there a prioritized todo list or roadmap?
-- Are there documented failure modes or known issues?
-- Is the build/validation process clear?
-
----
-
-## Presentation
-
-Present findings to user in this structure:
-
-```markdown
-## Project Audit Summary
-
-### Tools & Environment
-- Primary tools: [X]
-- Build/run process: [X]
-- Dependencies: [X]
-- Automation: [X]
-- Source control: [git | other | none]
-
-### Existing Claude Config
-- `.claude/` exists: [yes | no]
-- [if yes, describe contents]
-
-### Conventions
-- Commit style: [convention | squash | other | n/a]
-- Style conventions: [config found | inferred | none]
-- Docs location: [README | Wiki | other]
-- Issue tracking: [GitHub | Linear | other | none]
-
-### Gaps & Unknowns
-- [gap 1]
-- [gap 2]
-- ...
-
-### Recommendation
-Proceed with:
-- **New project mode** (scaffold from scratch)
-- **Existing project + Extend** (add framework alongside)
-- **Existing project + Migrate** (integrate into framework)
-- **Existing project + Replace** (archive old, start fresh)
+```yaml
+bootstrap_audit:
+  project_exists: true | false
+  tools:
+    languages: [list of primary languages]
+    frameworks: [list of frameworks]
+    build_system: string
+    package_manager: string
+    automation: string | null
+  conventions:
+    git_present: true | false
+    commit_style: string | null
+    doc_location: string
+    issue_tracking: string | null
+  claude_config:
+    exists: true | false
+    agents: [list]
+    skills: [list]
+    has_context: true | false
+    has_plan: true | false
+    has_logs: true | false
+  gaps: [list of gaps/unknowns]
+  integration_mode_recommendation: [new | extend | migrate | replace]
 ```
-
-Ask: "Does this match your understanding? Anything incorrect or missing?"
-
-Let the user correct and fill in gaps before proceeding.
-
----
-
-## Outcome
-
-Project is fully understood. User confirms:
-- Tools, environment, and conventions are documented
-- Whether `.claude/` exists and what's in it
-- Decision on integration mode (if applicable)
-
-Pass to Step 3 (bootstrap-integration.md if `.claude/` found) or Step 4 (bootstrap-interview.md).

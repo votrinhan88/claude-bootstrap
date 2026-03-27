@@ -90,7 +90,7 @@ Results: `eval/results/2026-03-*_batch-1.md`
 
 ## Framework Readiness Assessment
 
-### Session 0 (Bootstrap)
+### Bootstrap session (Bootstrap)
 
 | Component | Status | Notes |
 |-----------|--------|-------|
@@ -102,9 +102,9 @@ Results: `eval/results/2026-03-*_batch-1.md`
 | Agents | ⏳ Content | Placeholder, needs detail |
 | State Init | ⏳ Content | Placeholder, needs detail |
 
-**Overall: ~30% ready for Session 0**
+**Overall: ~30% ready for Bootstrap session**
 
-### Session 1 (Planning)
+### Planning session (Planning)
 
 | Component | Status | Notes |
 |-----------|--------|-------|
@@ -115,9 +115,9 @@ Results: `eval/results/2026-03-*_batch-1.md`
 | Role Review | ⏳ Placeholder | Instructions only |
 | Planning Gate | ⏳ Placeholder | Instructions only |
 
-**Overall: ~10% ready for Session 1**
+**Overall: ~10% ready for Planning session**
 
-### Session 2+ (Implementation)
+### Runtime
 
 | Component | Status | Notes |
 |-----------|--------|-------|
@@ -127,7 +127,7 @@ Results: `eval/results/2026-03-*_batch-1.md`
 | Phase Gates | ⏳ Placeholder | Instructions only |
 | Blocker Escalation | ⏳ Placeholder | Instructions only |
 
-**Overall: ~5% ready for Session 2+**
+**Overall: ~5% ready for runtime**
 
 ---
 

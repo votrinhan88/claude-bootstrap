@@ -15,7 +15,7 @@ Empirical measurement framework for bootstrap pipeline evaluations.
 ```markdown
 ## Completion Checklist
 
-Session 0 (Bootstrap):
+Bootstrap session (Bootstrap):
 - [ ] Step 1: Git Setup — PASS/FAIL
 - [ ] Step 2: Audit — SKIP/PASS/FAIL (skip if new project)
 - [ ] Step 3: Integration Mode — SKIP/PASS/FAIL (skip if no .claude/)
@@ -25,7 +25,7 @@ Session 0 (Bootstrap):
 - [ ] Step 7: State Initialization — PASS/FAIL
 - [ ] Step 8: Review Gate — PASS/FAIL
 
-Session 1 (Planning):
+Planning session (Planning):
 - [ ] 1.1 Explore — PASS/FAIL
 - [ ] 1.2 Draft Plan — PASS/FAIL
 - [ ] 1.3 Quality Pre-flight — PASS/FAIL
@@ -33,7 +33,7 @@ Session 1 (Planning):
 - [ ] 1.5 Role Review — PASS/FAIL
 - [ ] 1.6 Planning Gate — PASS/FAIL
 
-Session 2+ (Implementation):
+Runtime:
 - [ ] Start state reconciliation — PASS/FAIL
 - [ ] First task execution — PASS/FAIL
 - [ ] Phase boundary review — PASS/FAIL
@@ -42,7 +42,7 @@ Session 2+ (Implementation):
 **Score:** `steps_passed / (steps_passed + steps_failed)` as percentage
 
 Example:
-- Reached: Session 0 complete, Session 1 to step 1.4, Session 2 not started
+- Reached: Bootstrap session complete, Planning session to step 1.4, runtime not started
 - Score: 14 passed / 15 attempted = **93%**
 
 ---
@@ -114,7 +114,7 @@ For each artifact, score completeness and correctness:
 | Next action | Yes | ✅ | ✅ | 1 |
 | **Total** | | | | **5/5** |
 
-#### PLAN.md (Execution Plan, if Session 1 reached)
+#### PLAN.md (Execution Plan, if Planning session reached)
 
 | Field | Required | Presence | Correctness | Score |
 |-------|----------|----------|-------------|-------|

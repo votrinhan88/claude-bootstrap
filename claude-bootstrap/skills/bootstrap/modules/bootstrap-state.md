@@ -2,7 +2,7 @@
 
 > **Note:** This skill is a placeholder — content is incomplete.
 
-Creates `.claude/state/` directory structure and exports log templates during Session 0 Step 6. CONTEXT.md is populated and the first log entry is written in Step 7 (Review Gate), after all bootstrap work is complete.
+Creates `.claude/state/` directory structure and exports log templates during Bootstrap session Step 6. CONTEXT.md is populated and the first log entry is written in Step 7 (Review Gate), after all bootstrap work is complete.
 
 ---
 
@@ -18,8 +18,8 @@ Creates `.claude/state/` directory structure and exports log templates during Se
 
 ```
 .claude/state/
-├── CONTEXT.md          # Empty — populated at end of Session 0
-└── logs/               # Empty — first entry written at end of Session 0
+├── CONTEXT.md          # Empty — populated at end of Bootstrap session
+└── logs/               # Empty — first entry written at end of Bootstrap session
 ```
 
 Create CONTEXT.md as an empty file (or with just the `# Context` heading). Do not fill in sections yet — there's nothing meaningful to record until bootstrap is complete.

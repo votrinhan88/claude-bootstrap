@@ -28,12 +28,12 @@ This framework operates in two distinct scopes. Agents must never cross the boun
 | Scope | What it covers | Who touches it |
 |-------|---------------|----------------|
 | **Bootstrap scope** | Claude infrastructure only: `CLAUDE.md`, `.claude/` directory, state files, agent files, skills, hooks, rules | Bootstrap and planning agents |
-| **Project scope** | The downstream project's own files, source code, content, or deliverables | Implementation agents, only after Session 1 completes |
+| **Project scope** | The downstream project's own files, source code, content, or deliverables | Downstream agents, only after the Planning session completes |
 
 **Hard rules:**
-- Session 0 agents: read-only on project files. Write only to `.claude/` and `CLAUDE.md`.
-- Session 1 agents: read-only on project files. Write only to `.claude/` and `CLAUDE.md`.
-- Session 2+ agents: may write project files, but only tasks explicitly assigned in `.claude/state/PLAN.md`.
+- Bootstrap session agents: read-only on project files. Write only to `.claude/` and `CLAUDE.md`.
+- Planning session agents: read-only on project files. Write only to `.claude/` and `CLAUDE.md`.
+- Downstream agents: may write project files, but only tasks explicitly assigned in `.claude/state/PLAN.md`.
 - No agent creates, modifies, or deletes project files "to help" or as a side effect of bootstrap work.
 
 If an agent is unsure which scope a file belongs to: **stop and ask the user.**
@@ -50,4 +50,3 @@ If an agent is unsure which scope a file belongs to: **stop and ask the user.**
 - End: curate `CONTEXT.md` (remove stale entries), append new entry to `.claude/state/logs/`
 - Log entries: `.claude/state/logs/{date}_{seq}_{type}.md`
 - On compaction: preserve modified file list, current plan step, unresolved blockers
-- Operational signals: `claude-bootstrap/skills/bootstrap/bootstrap-runtime.md`

@@ -33,7 +33,7 @@ Where did it get stuck? Any surprises?}
 
 Track which steps were reached and whether they passed, failed, or were skipped.
 
-#### Session 0 (Bootstrap)
+#### Bootstrap session (Bootstrap)
 
 | Step | Action | Status | Time | Notes |
 |------|--------|--------|------|-------|
@@ -46,9 +46,9 @@ Track which steps were reached and whether they passed, failed, or were skipped.
 | 7 | State | ✅ PASS | 2m | CONTEXT.md initialized |
 | 8 | Gate | ✅ PASS | 3m | User confirmed ready to plan |
 
-**Session 0 Score: 8/8 steps = 100%**
+**Bootstrap session Score: 8/8 steps = 100%**
 
-#### Session 1 (Planning) — [if reached]
+#### Planning session (Planning) — [if reached]
 
 | Step | Action | Status | Time | Notes |
 |------|--------|--------|------|-------|
@@ -59,9 +59,9 @@ Track which steps were reached and whether they passed, failed, or were skipped.
 | 1.5 | Role Review | — | — | Not reached |
 | 1.6 | Gate | — | — | Not reached |
 
-**Session 1 Score: 2.5/6 steps = 42%**
+**Planning session Score: 2.5/6 steps = 42%**
 
-#### Session 2+ (Implementation) — [if reached]
+#### Runtime — [if reached]
 
 | Milestone | Status | Time | Notes |
 |-----------|--------|------|-------|
@@ -70,12 +70,12 @@ Track which steps were reached and whether they passed, failed, or were skipped.
 | Phase 1 boundary | ✅ PASS | 3m | Gate review passed |
 | Phase 2 start | ⏸️ STOPPED | — | Simulation ended; could continue |
 
-**Session 2+ Score: 3/4 checkpoints = 75%**
+**Runtime Score: 3/4 checkpoints = 75%**
 
 ### Overall Completion
 
-**Total phases reached:** Session 0 + partial Session 1
-**Last completed step:** Session 1, Step 1.2 (Draft Plan)
+**Total phases reached:** Bootstrap session + partial Planning session
+**Last completed step:** Planning session, Step 1.2 (Draft Plan)
 **Completion score:** `(8 + 2.5 + 0) / 14 = **75%**`
 
 ---
@@ -132,7 +132,7 @@ For each artifact created, score completeness and correctness using the scoring 
 
 ### PLAN.md (if created)
 
-[Not created in this simulation — Session 1 incomplete]
+[Not created in this simulation — Planning session incomplete]
 
 ### Interview Handoff Log
 
@@ -165,7 +165,7 @@ Track where the user or agent got confused and needed clarification.
 
 #### Ambiguity 1: Interview Success Criteria
 
-**Step:** Session 0, Step 4 (Interview)
+**Step:** Bootstrap session, Step 4 (Interview)
 **Severity:** Low
 **What happened:**
 User asked "What does success look like?" — agent's response was too abstract.
@@ -177,7 +177,7 @@ Agent clarified with testable criteria.
 
 #### Ambiguity 2: Tension Map Interpretation
 
-**Step:** Session 0, Step 6 (Agent Definition)
+**Step:** Bootstrap session, Step 6 (Agent Definition)
 **Severity:** Low
 **What happened:**
 User asked "Is the Developer-Reviewer tension healthy?"
@@ -189,7 +189,7 @@ User accepted.
 
 #### Ambiguity 3: Plan Quality Pre-flight (Step 1.3)
 
-**Step:** Session 1, Step 1.3 (Quality Pre-flight)
+**Step:** Planning session, Step 1.3 (Quality Pre-flight)
 **Severity:** Medium
 **What happened:**
 Agent detected: "Phase X touches 8 files (exceeds limit of 7)"
@@ -276,7 +276,7 @@ Overall = (75 + 97 + 92 + 100) / 4 = 91% → 🟢 PASS
 
 ### What Could Improve
 
-1. **Completion depth** — Simulation stopped at Session 1 Step 1.2; didn't reach full planning or implementation
+1. **Completion depth** — Simulation stopped at Planning session Step 1.2; didn't reach full planning or implementation
    - Root cause: Time/scope constraints of test, not framework issue
 
 2. **Plan quality rules** — Phase-splitting logic took extra explanation
@@ -309,14 +309,14 @@ Overall = (75 + 97 + 92 + 100) / 4 = 91% → 🟢 PASS
 For reference, include timestamps and key moments:
 
 ```
-10:30 — Session 0, Step 1 started (Git setup)
+10:30 — Bootstrap session, Step 1 started (Git setup)
 10:32 — User chose "track knowledge"
 10:34 — Step 2 skipped (new project)
 10:35 — Step 4 started (Interview)
 10:37 — Ambiguity 1: success criteria clarification
 10:38 — Interview completed
 ...
-10:58 — Session 1, Step 1.3: Phase-splitting decision
+10:58 — Planning session, Step 1.3: Phase-splitting decision
 11:00 — Simulation paused (for purposes of this test)
 ```
 

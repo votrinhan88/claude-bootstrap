@@ -2,13 +2,13 @@
 
 > **Note:** This skill is a placeholder — content is incomplete.
 
-Derives and creates hooks and rules during Session 1, Step 1.7 — after the plan and agent roles are defined.
+Derives and creates hooks and rules during Planning session, Step 1.7 — after the plan and agent roles are defined.
 
 ---
 
 ## Prerequisites
 
-- Session 1 Step 1.6 (Role Review) completed — plan and agents are approved
+- Planning session Step 1.6 (Role Review) completed — plan and agents are approved
 - `.claude/hooks/` and `.claude/rules/` directories exist (created by scaffold)
 
 ---
@@ -40,11 +40,11 @@ purpose: [what it does]
 
 # [Hook Name]
 
-[Placeholder: implementation filled in Session 1]
+[Placeholder: implementation filled in Planning session]
 ```
 
 ---
 
 ## Outcome
 
-`.claude/hooks/` and `.claude/rules/` contain hook and rule files derived from the approved plan and agent roles. Proceed to Session 1 Step 1.8 (Planning Gate).
+`.claude/hooks/` and `.claude/rules/` contain hook and rule files derived from the approved plan and agent roles. Proceed to Planning session Step 1.8 (Planning Gate).

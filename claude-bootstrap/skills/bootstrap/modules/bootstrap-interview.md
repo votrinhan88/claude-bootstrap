@@ -1,6 +1,6 @@
 # Bootstrap Interview
 
-Collects everything needed to scaffold a new project: spec, stakeholders, failure modes, and handoff log. Run during Session 0a before scaffolding.
+Collects everything needed to scaffold a new project: spec, stakeholders, failure modes, and handoff log. Run during Bootstrap session before scaffolding.
 
 ---
 

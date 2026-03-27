@@ -3,7 +3,7 @@ name: skill-name
 description: (User-only.?) What this skill does, when to invoke
 compatibility: (Optional) Requires [environment, packages, MCP servers], etc.
 user-invocable: true  # set false if agent-invocable
-metadata:
+metadata:  # drop any fields if not applicable
   reads: [none | paths | all]
   writes: [none | paths | all]
   invokes:

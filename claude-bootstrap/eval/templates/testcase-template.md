@@ -113,9 +113,9 @@ USER CONTEXT TO ESTABLISH:
 ## Expected Flow
 
 **Expected phases to reach:**
-- [ ] Session 0, Step 1-8 (Bootstrap) — YES/NO
-- [ ] Session 1, Steps 1-6 (Planning) — YES/NO
-- [ ] Session 2+ (Implementation) — YES/NO
+- [ ] Bootstrap session, Step 1-8 (Bootstrap) — YES/NO
+- [ ] Planning session, Steps 1-6 (Planning) — YES/NO
+- [ ] Runtime — YES/NO
 
 **Expected decision points:**
 1. {Decision point}: {Expected choice}
@@ -127,7 +127,7 @@ USER CONTEXT TO ESTABLISH:
 - [ ] `.claude/agents/` (orchestrator + [list roles])
 - [ ] `.claude/state/CONTEXT.md`
 - [ ] `.claude/state/logs/` (interview handoff)
-- [ ] `.claude/state/PLAN.md` (if Session 1 reached)
+- [ ] `.claude/state/PLAN.md` (if Planning session reached)
 
 ---
 

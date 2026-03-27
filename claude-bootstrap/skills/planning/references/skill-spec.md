@@ -20,14 +20,14 @@ The `SKILL.md` file must contain YAML frontmatter followed by Markdown content.
 
 ### Frontmatter
 
-| Field           | Required | Constraints                                                                                                       |
-| --------------- | -------- | ----------------------------------------------------------------------------------------------------------------- |
-| `name`          | Yes      | Max 64 characters. Lowercase letters, numbers, and hyphens only. Must not start or end with a hyphen.             |
-| `description`   | Yes      | Max 1024 characters. Non-empty. Describes what the skill does and when to use it.                                 |
-| `license`       | No       | License name or reference to a bundled license file.                                                              |
-| `compatibility` | No       | Max 500 characters. Indicates environment requirements (intended product, system packages, network access, etc.). |
-| `metadata`      | No       | Arbitrary key-value mapping for additional metadata.                                                              |
-| `allowed-tools` | No       | Space-delimited list of pre-approved tools the skill may use. (Experimental)                                      |
+| Field | Req | Details |
+|-------|-----|---------|
+| `name` | Yes | Max 64 chars. Lowercase, numbers, hyphens only. No leading/trailing hyphens. |
+| `description` | Yes | Max 1024 chars. Non-empty. Describes what and when to use. |
+| `license` | No | License name or bundled file reference. |
+| `compatibility` | No | Max 500 chars. Environment requirements (product, packages, network, etc). |
+| `metadata` | No | Key-value map for additional properties. Keep keys unique. |
+| `allowed-tools` | No | Space-delimited tools pre-approved to run. (Experimental) |
 
 ### Minimal example
 
