@@ -1,144 +1,52 @@
+---
+name: bootstrap-integration
+description: Agent-only. Choose and execute integration mode when an existing `.claude/` directory is present. Existing-project path only; runs after bootstrap-git.
+user-invocable: false
+metadata:
+  reads: [.claude/]
+  writes: [.claude/]
+  authors: [votrinhan88]
+  version: 0.1
+---
+
 # Bootstrap Integration
+Choose how to integrate the Bootstrap framework with an existing `.claude/` directory.
 
-Choose how to integrate the Bootstrap framework with an existing `.claude/` directory. Run during Bootstrap session, Step 3 for existing projects with existing Claude config.
+## Steps
+1. **Review audit findings** — read `bootstrap_audit` output; note existing agents, skills, hooks, rules, state files
+2. **Present modes** — show the three options; ask "Which mode fits your situation?"
+   - **Extend** (default) — add framework alongside existing config; nothing touched or overwritten
+   - **Migrate** — restructure existing config into framework layout; agent proposes plan first, user approves before any change
+   - **Replace** — archive existing `.claude/` to `.claude/.archive-{timestamp}/`; Planning session will create fresh infrastructure
+3. **Execute mode workflow:**
+   - *Extend:* record mode; no file changes at this step
+   - *Migrate:* read `.claude/` recursively; draft mapping (existing files → target paths, conflicts, what framework adds); present plan; wait for user approval; backup to `.claude/.backup-{timestamp}/`; execute
+   - *Replace:* confirm with user ("This will archive your existing `.claude/`. Ready?"); do not proceed until confirmed; archive existing `.claude/`; Planning session will create fresh infrastructure
+4. **Confirm** — summarize what was done; confirm with user
+5. **Return decisions** — pass `bootstrap_integration` output to bootstrap skill
 
----
+## Examples
+- **Input:** Existing project, one stale agent file, user chooses Replace
+- **Output:** `.claude/` archived to `.claude/.archive-2026-03-30T14-00/`; Planning session will create fresh infrastructure; `mode: replace`
+- **Input:** Existing project with structured agents and skills, user chooses Migrate
+- **Output:** Backup created; existing files remapped to framework layout; `mode: migrate`
+- **Input:** Existing project, user unsure, chooses Extend
+- **Output:** No changes; Planning session will add framework files alongside existing config; `mode: extend`
 
-## Prerequisites
+## Edge Cases
+- **`.claude/` exists but empty:** treat as new project; skip integration; `mode: skip`
+- **User declines all modes:** stop; do not proceed until resolved — this step cannot be skipped
+- **Migrate conflicts:** surface each with a recommendation; do not auto-resolve; ask user per conflict
+- **Backup directory collision:** append `-2` suffix; never overwrite a prior backup
 
-- Audit completed (Bootstrap session, Step 2)
-- `.claude/` directory exists
-- User is available to choose and confirm
+## Resources
 
----
-
-## The Three Modes
-
-### Extend (Default)
-
-Add Bootstrap framework infrastructure **alongside** existing config. Nothing is touched or overwritten.
-
-**Use when:**
-- You want to keep existing custom rules, hooks, skills, agents
-- You're not ready to migrate yet
-- You want to pilot the framework without disrupting current workflow
-
-**What happens:**
-- Framework creates `.claude/docs/SPEC.md` (interview spec)
-- Framework creates `.claude/agents/orchestrator.md` + role agents
-- Framework creates `.claude/state/` (CONTEXT.md, logs/)
-- Existing files remain untouched
-- Both old and new agents can coexist
-
-**Outcome:** New `.claude/` directories exist; old configs are preserved.
-
----
-
-### Migrate (Structured Integration)
-
-Restructure existing Claude config into the Bootstrap framework. Agent proposes a plan; user approves before any change is made.
-
-**Use when:**
-- You want a clean integration with existing infrastructure
-- You have existing agents/skills that map to framework roles
-- You're committed to the framework long-term
-
-**What happens:**
-1. Agent reads existing `.claude/` structure
-2. Agent proposes mapping:
-   - Existing agents → framework role agents (with renames, if needed)
-   - Existing skills → framework domain skills
-   - Existing rules → framework rules (may need reorganization)
-   - Existing hooks → framework hooks (may need reorganization)
-3. Agent backs up existing files (`.claude/.backup-{timestamp}/`)
-4. Agent restructures into framework layout
-5. Framework adds missing pieces (orchestrator, state/, SPEC.md)
-
-**Outcome:** Existing work is preserved and integrated; framework fills gaps.
-
----
-
-### Replace (Clean Start)
-
-Archive existing Claude config. Start fresh from framework defaults.
-
-**Use when:**
-- Existing config is outdated or minimal
-- You're starting a new phase and want a clean slate
-- You're willing to lose the old config (after confirming with user)
-
-**What happens:**
-1. Agent archives existing `.claude/` as `.claude/.archive-{timestamp}/`
-2. Framework scaffolds fresh `.claude/` from defaults
-3. User can reference archived version if needed
-
-**Outcome:** Clean `.claude/` directory with framework structure; old config archived but available.
-
----
-
-## User Choice
-
-Present the three options clearly:
-
-```markdown
-## Choose Integration Mode
-
-Your project has an existing `.claude/` directory.
-
-1. **Extend** (recommended if unsure)
-   - Keep existing config, add framework alongside
-   - No modifications, zero risk
-   - Best for: piloting the framework
-
-2. **Migrate** (recommended if ready to commit)
-   - Integrate existing config into framework
-   - Agent proposes a plan first
-   - Best for: existing agents/skills you want to preserve
-
-3. **Replace** (recommended if config is old/minimal)
-   - Archive existing, start fresh
-   - Fastest path to clean framework structure
-   - Best for: abandoned or minimal existing config
+### Output schema
+```yaml
+bootstrap_integration:
+  mode: extend | migrate | replace | skip
+  existing_files_found: [list of paths]
+  backup_path: null | string        # Migrate and Replace only
+  migration_plan: null | object     # Migrate only: moved[], conflicts[], added[]
+  user_confirmed: true | false
 ```
-
-Ask: "Which mode fits your situation?"
-
----
-
-## Mode-Specific Workflows
-
-### Extend: Proceed Immediately
-
-No additional steps. User confirms mode. Pass to Step 4 (bootstrap-interview.md).
-
-### Migrate: Propose & Approve Plan
-
-> **Agent:** Before making any changes:
->
-> 1. Read existing `.claude/` recursively
-> 2. Draft a migration plan showing:
->    - Each existing file → target location (with any renames)
->    - Conflicts or ambiguities (with recommendations)
->    - What framework pieces will be added
-> 3. Present plan to user
-> 4. Ask: "Ready to proceed, or adjust anything?"
-> 5. Do not modify files until user confirms
-
-Once user approves, execute the plan (back up, move, restructure, add).
-
-### Replace: Confirm Loss & Archive
-
-> **Agent:** Confirm with user:
-> "This will move your existing `.claude/` to `.claude/.archive-{timestamp}/` for safekeeping. You can still reference it. Ready?"
->
-> Do not proceed until user confirms.
->
-> Once confirmed, archive and scaffold fresh.
-
----
-
-## Outcome
-
-Integration mode is chosen. If Migrate, the migration plan is approved and executed. Existing infrastructure is preserved or integrated.
-
-Pass to Step 4 (bootstrap-interview.md).

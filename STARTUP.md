@@ -6,24 +6,23 @@ Agent bootstrap routine. Scaffold project infrastructure, define roles, and esta
 
 ## Flow
 
-1. **Interview** → Invoke [`bootstrap.md`](claude-bootstrap/skills/bootstrap.md) skill
-2. **Execute** → Read and follow [`session-bootstrap.md`](claude-bootstrap/sessions/session-bootstrap.md) through completion
-3. **Repeat** → Next session (Planning session)
+1. **Bootstrap session** → Read and follow [`bootstrap/SKILL.md`](claude-bootstrap/skills/bootstrap/SKILL.md) through completion
+2. **Planning session** → Read and follow [`planning/SKILL.md`](claude-bootstrap/skills/planning/SKILL.md) through completion
 
 ---
 
 ## Resources
 
-**Bootstrap skills:**
-- Interview: [`bootstrap.md`](claude-bootstrap/skills/bootstrap.md)
-- Git: [`bootstrap/bootstrap-git.md`](claude-bootstrap/skills/bootstrap/bootstrap-git.md)
-- Scaffold: [`bootstrap/bootstrap-scaffold.md`](claude-bootstrap/skills/bootstrap/bootstrap-scaffold.md)
-- State: [`bootstrap/bootstrap-state.md`](claude-bootstrap/skills/bootstrap/bootstrap-state.md)
-- Agents: [`bootstrap/bootstrap-agents.md`](claude-bootstrap/skills/bootstrap/bootstrap-agents.md)
-- Hooks: [`bootstrap/bootstrap-hooks.md`](claude-bootstrap/skills/bootstrap/bootstrap-hooks.md)
+**Bootstrap skill modules:**
+- Interview: [`bootstrap/modules/bootstrap-interview.md`](claude-bootstrap/skills/bootstrap/modules/bootstrap-interview.md)
+- Audit: [`bootstrap/modules/bootstrap-audit.md`](claude-bootstrap/skills/bootstrap/modules/bootstrap-audit.md)
+- Git: [`bootstrap/modules/bootstrap-git.md`](claude-bootstrap/skills/bootstrap/modules/bootstrap-git.md)
+- Scaffold: [`bootstrap/modules/bootstrap-scaffold.md`](claude-bootstrap/skills/bootstrap/modules/bootstrap-scaffold.md)
+- State: [`bootstrap/modules/bootstrap-state.md`](claude-bootstrap/skills/bootstrap/modules/bootstrap-state.md)
+- Integration: [`bootstrap/modules/bootstrap-integration.md`](claude-bootstrap/skills/bootstrap/modules/bootstrap-integration.md)
 
-**Sessions:**
-- Bootstrap session: [`sessions/session-bootstrap.md`](claude-bootstrap/sessions/session-bootstrap.md) — Set up git, audit existing work, establish Claude infrastructure, define agents, initialize state.
-- Planning session: [`sessions/session-planning.md`](claude-bootstrap/sessions/session-planning.md) — Explore spec, draft execution plan with role ownership and validation gates, refine through role review.
+**Planning skill modules:**
+- Agents: [`planning/modules/bootstrap-agents.md`](claude-bootstrap/skills/planning/modules/bootstrap-agents.md)
+- Hooks: [`planning/modules/bootstrap-hooks.md`](claude-bootstrap/skills/planning/modules/bootstrap-hooks.md)
 
 **User reference:** [`README.md`](README.md)

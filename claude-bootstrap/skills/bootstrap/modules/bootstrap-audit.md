@@ -1,6 +1,6 @@
 ---
 name: bootstrap-audit
-description: Agent-only. Analyze existing project structure, tools, conventions, and gaps. Run during Bootstrap session, Step 2 for existing projects only.
+description: Agent-only. Analyze existing project structure, tools, conventions, and gaps. Existing-project path only; runs before bootstrap-git.
 user-invocable: false
 metadata:
   reads: all
@@ -23,16 +23,9 @@ Audit an existing project to understand tools, environment, conventions, and gap
 4. **Identify conventions** — commit style, style conventions, documentation location, issue tracking patterns
 5. **Assess gaps** — missing spec, prioritized todo list, failure modes, or build clarity
 6. **Present findings to user** — show audit summary; ask for corrections
-7. **Confirm understanding** — user verifies tools, conventions, `.claude/` status, and integration mode decision
+7. **Confirm understanding** — user verifies tools, conventions, and `.claude/` status; integration mode is decided in bootstrap-integration
 
 ## Examples
-
-**Software dev (new project, no `.claude/`):**
-- Tools: Node.js, React, Jest, GitHub
-- Conventions: Conventional commits, GitHub Issues
-- `.claude/`: does not exist
-- Gaps: No formal spec, unclear roadmap
-- Recommendation: New project mode
 
 **AI/ML paper (existing project, local latex, no `.claude/`):**
 - Tools: Python, LaTeX, Jupyter, local filesystem
@@ -49,12 +42,11 @@ Audit an existing project to understand tools, environment, conventions, and gap
 - Recommendation: Existing + Extend
 
 ## Edge Cases
-
 - **No `.claude/` directory:** Audit proceeds normally; integration mode deferred to bootstrap-integration
 - **`.claude/` exists but incomplete:** Report what's present; note gaps in agents, skills, state structure
-- **Conflicting conventions:** Document what's observed; user clarifies preference during bootstrap-interview
+- **Conflicting conventions:** Document what's observed; user clarifies preference during `planning-interview`
 - **No git initialized:** Note; Bootstrap session bootstrap-git step handles initialization if user elects git
-- **Unclear build process:** Report what's observable (scripts in package.json, Makefile, etc.); user fills in during interview
+- **Unclear build process:** Report what's observable ambiguity; user fills in during `planning-interview`
 
 ## Resources
 

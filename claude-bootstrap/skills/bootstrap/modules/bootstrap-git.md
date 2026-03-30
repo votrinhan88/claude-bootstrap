@@ -1,16 +1,16 @@
 ---
 name: bootstrap-git
-description: Agent-only. Git setup during Bootstrap session — repo init/audit, branching strategy, tracking configuration, and commit protocol. Runs after bootstrap-audit.
+description: Agent-only. Git setup during Bootstrap session — repo init/audit, branching strategy, tracking configuration, and commit protocol. Runs after bootstrap-audit on existing projects; first step on new projects.
 user-invocable: false
 metadata:
-  reads: [.git/, .gitignore, CLAUDE.md]
+  reads: [.git/, .gitignore]
   writes: none
   authors: [votrinhan88]
   version: 0.1
 ---
 
 # Bootstrap Git
-Git setup during Bootstrap session. Runs after audit and before interview. Handles repo init/audit, branching strategy, and tracking configuration.
+Git setup during Bootstrap session. Runs after audit (existing projects) or as first step (new projects). Handles repo init/audit, branching strategy, and tracking configuration.
 
 ## Steps
 1. **Check repo status** — run `git rev-parse --git-dir`
@@ -22,19 +22,19 @@ Git setup during Bootstrap session. Runs after audit and before interview. Handl
    - Show recent commit history (last 5–10 commits)
    - Do not alter history or branches without user confirmation
 3. **Ask: Do you want to use git for this project?**
-   - **Yes** (default): proceed to Step 4
-   - **No**: skip all git setup; document in CONTEXT.md, proceed to interview
+   - **Yes** (default): proceed to **Init**
+   - **No**: skip all git setup; record `use_git: false` in output schema
 4. **Init (new repo)** — if repo doesn't exist AND user answered Yes
    - Run `git init`
-   - Create `.gitignore` appropriate for project tools/environment (from bootstrap-audit findings)
-   - Commit: `git commit -m "chore: initial scaffold"`
+   - Create a minimal `.gitignore` (tools/environment not yet known; Planning session will expand it)
+   - Commit: `git commit -m "chore: init"`
 5. **Choose tracking mode** — "How much Claude infrastructure should be version-controlled?"
    - **Track nothing**: `.gitignore: CLAUDE.md, .claude/` (use if: Claude setup is private/disposable)
    - **Track knowledge** (recommended): `.gitignore: .claude/state/` only (use if: spec/roles/skills versioned, not session logs)
-   - **Track everything**: `.gitignore: .claude/state/sessions/` only (use if: full audit trail needed; **warning** — repo must be private, logs may contain sensitive content)
+   - **Track everything**: `.gitignore: .claude/state/logs/` only (use if: full audit trail needed; **warning** — repo must be private, logs may contain sensitive content)
    - Apply user's choice to `.gitignore`
 6. **Choose branching mode**
-   - **Branch-per-phase** (default): one branch per plan phase, squash-merge at gate
+   - **Branch-per-phase** (default): one branch per plan phase, squash-merge at phase boundary
    - **Branch-per-task**: one branch per task within a phase
    - **Trunk-based**: all commits to main, no phase branches
 7. **Confirm commit protocol**
@@ -83,8 +83,8 @@ bootstrap_git:
 ```
 
 ## Edge Cases
-- **No git initialized:** Step 2 initializes it; if user declines git at Step 4, skip all git operations and record `use_git: false`
-- **Existing repo with uncommitted changes:** Audit (Step 3) surfaces this; do not commit without user confirmation
+- **No git initialized:** **Init** handles this; if user declines at **Ask**, skip all git operations and record `use_git: false`
+- **Existing repo with uncommitted changes:** **Audit** surfaces this; do not commit without user confirmation
 - **Existing `.gitignore` conflicts:** Audit proposes additions; merge user's choice with existing rules
 - **Remote setup fails:** Catch error, surface to user, allow retry or skip; record `remote: false` if skipped
 - **User changes tracking mode mid-session:** `.gitignore` may need refresh; re-apply user's final choice before returning decisions
@@ -96,13 +96,13 @@ bootstrap_git:
 Return all decisions to bootstrap skill as a structured dict:
 ```yaml
 bootstrap_git:
-  git_exists: true | false                          # was repo present before bootstrap?
-  use_git: true | false                             # user elected to use git
-  track_claude: none | knowledge | full             # what to version-control
+  git_exists: true | false  # was repo present before bootstrap?
+  use_git: true | false  # user elected to use git
+  track_claude: none | knowledge | full  # what to version-control
   branch_mode_observed: null | branch-per-phase | branch-per-task | trunk-based  # existing mode (existing repos only)
   branch_mode: branch-per-phase | branch-per-task | trunk-based  # elected mode
-  commit_format: conventional | standard | custom   # commit message style
-  remote: null | true                               # remote configured? (URL in .git/config only)
+  commit_format: conventional | standard | custom  # commit message style
+  remote: null | true  # remote configured? (URL in .git/config only)
 ```
 
-The bootstrap skill collects these and threads them to `bootstrap-interview` for incorporation into the handoff log.
+The bootstrap skill collects these; they are available to `planning-interview` when the Planning session begins.

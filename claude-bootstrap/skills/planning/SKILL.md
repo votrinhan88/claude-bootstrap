@@ -4,7 +4,7 @@ description: User-only. Entry point for Planning session — define agents and s
 user-invocable: true
 metadata:
   reads: [.claude/docs/SPEC.md, .claude/state/logs/, .claude/agents/, .claude/skills/]
-  writes: [.claude/agents/, .claude/skills/, .claude/state/, .claude/rules/, .claude/hooks/]
+  writes: [CLAUDE.md, .claude/agents/, .claude/skills/, .claude/state/, .claude/rules/, .claude/hooks/]
   authors: [votrinhan88]
   version: 0.1
 ---
@@ -14,30 +14,35 @@ Entry point for Planning session (agent + skill definition + execution planning)
 
 ## Steps
 
-1. **Explore spec** — read project files and existing `.claude/` state
-2. **Define agents** — run `bootstrap-agents` to define project-specific role-agents
-3. **Define skills** — run `bootstrap-skills` to define project-specific skills
-4. **Draft plan** — produce a phased PLAN.md with tasks assigned to roles
-5. **Pre-flight** — verify plan completeness and scope coverage
-6. **Annotate** — annotate plan tasks with role, complexity, and dependencies
-7. **Role review** — review agent definitions against plan tasks; adjust as needed
-8. **Hooks & rules** — run `bootstrap-hooks` to create hooks and rules files
-9. **Gate** — run Planning session gate per `sessions/session-planning.md` final step
+1. **Interview** — run `planning-interview` to gather project spec and populate `.claude/docs/SPEC.md`
+2. **State init** — run `planning-state` to initialize `.claude/state/` and write CONTEXT.md with interview content
+3. **Explore spec** — read project files and existing `.claude/` state; surface any gaps before proceeding
+4. **Define agents** — run `bootstrap-agents` to define project-specific role-agents
+5. **Define skills** — run `bootstrap-skills` to define project-specific skills
+6. **Draft plan** — produce a phased PLAN.md with tasks assigned to roles
+7. **Pre-flight** — verify plan completeness and scope coverage
+8. **Annotate** — annotate plan tasks with role, complexity, and dependencies
+9. **Role review** — review agent definitions against plan tasks; adjust as needed
+10. **Hooks & rules** — run `bootstrap-hooks` to create hooks and rules files
+11. **Write CLAUDE.md** — populate `docs/preset-templates/CLAUDE.md` template with all planning outputs (tools, git, rules, agents, workflow); write to project root
+12. **Gate** — run Planning session gate per `sessions/session-planning.md` final step
 
 ## Examples
 
-- **Input:** Bootstrap session complete. SPEC.md captured. `.claude/state/CONTEXT.md` initialized.
+- **Input:** Bootstrap session complete. `.claude/` stub structure in place.
 - **Output:** All agents and skills defined. PLAN.md written with phases, owners, and validation steps. Hooks and rules created. Ready for implementation.
 
 ## Edge Cases
 
-- Planning session invoked without completed Bootstrap session: check CONTEXT.md Status; if Bootstrap session is not confirmed complete, stop and prompt user
+- Planning session invoked without completed Bootstrap session: check for `.claude/` presence; if Bootstrap is not confirmed complete, stop and prompt user
 - Spec gaps discovered during Explore: surface to user; do not proceed until resolved
 - Agent-plan mismatch during role review: revise either plan or agent definition; loop until consistent
 
 ## Resources
 
 ### Modules
+- `planning-interview.md` — gather project spec from user; populate SPEC.md
+- `planning-state.md` — initialize `.claude/state/` and write CONTEXT.md with interview content
 - `bootstrap-agents.md` — define project-specific role-agents based on spec and interview
 - `bootstrap-skills.md` — define project-specific skills based on spec and agent needs
 - `bootstrap-hooks.md` — create hooks and enforcement rules
