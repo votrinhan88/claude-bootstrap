@@ -58,6 +58,10 @@ graph LR
     skill-orchestrate --> orchestrator
     style skill-orchestrate fill:orange,color:black,stroke:none
 
+    skill-health("🔧 /health")
+    skill-health --> state
+    style skill-health fill:orange,color:black,stroke:none
+
     subgraph system["⚙️ RUNTIME"]
         direction TB
         orchestrator("🤖 Orchestrator")
@@ -113,6 +117,8 @@ graph LR
     style user fill:transparent,stroke:dodgerblue,stroke-width:5px
 ```
 
+**Runtime note:** State-control skill handles CONTEXT.md curation; callers (orchestrate, health) determine which log type to write (orchestrate writes checkpoint at phase gates; health writes handoff when user escalates to Level 3).
+
 ---
 
 ## Diagram 3b: Eval Workflow
@@ -142,6 +148,14 @@ flowchart LR
     score --> Partial
     score --> Fail
 ```
+
+---
+
+## Scope Boundary
+
+**Bootstrap framework** (diagrams 1–3) — provides methodology templates and patterns. Bootstrap agents operate read-only on project files; write only to `.claude/` and CLAUDE.md.
+
+**Project scope** — downstream agents own runtime tasks, customized skills, and project deliverables.
 
 ---
 
@@ -181,3 +195,4 @@ flowchart LR
 | 🔄 | — | Auto / Refresh / Cycle |
 | 📊 | — | Results / Analytics |
 | 🎯 | — | Score / Target |
+| 🚪 | — | Checkpoint / Phase boundary |

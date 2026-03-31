@@ -2,7 +2,7 @@
 
 An opinionated, role-driven methodology layer for Claude Code.
 
-Adds structured sessions, persistent state, and role-based agents on top of what Claude Code already provides — so your project stays organized and on track as it grows.
+Adds **three-session workflow** (Bootstrap → Planning → Runtime), **role-based agents**, **persistent state with phase-boundary checkpoints**, and **auto-logging with structured log types** (task, blocker, checkpoint, handoff). So your project stays organized, auditable, and on track as it grows.
 
 > **Requires:** [Claude Code](https://claude.ai/code) (Anthropic's CLI). Built specifically for it — not a generic framework.
 
@@ -18,7 +18,7 @@ The agent will interview you, scaffold your project infrastructure, and walk you
 
 - **Bootstrap session:** capture intent, define agents, initialize state
 - **Planning session:** draft and review a phased execution plan
-- **Runtime sessions:** orchestrate with configurable autonomy
+- **Runtime sessions:** orchestrate with configurable autonomy; use `/health` to inspect state and capture context at any point
 
 ## Commands
 
@@ -47,15 +47,23 @@ your-project/.claude/
 └── state/
     ├── CONTEXT.md       # Working memory (curated each session)
     ├── PLAN.md          # Execution plan (Planning session+)
-    └── logs/            # Append-only session logs
+    └── logs/            # Append-only structured logs: task, blocker, checkpoint (phase end), handoff (user pause)
 ```
 
 For the framework source, see `claude-bootstrap/`:
 
 ```
 claude-bootstrap/
-├── sessions/            # Session workflows
-├── skills/              # Reusable skill library
-├── docs/                # Research and reports
+├── skills/              # Bootstrap methodology: bootstrap, planning, health, orchestrate, state-control
+├── docs/                # Research, templates, reference architecture
 └── eval/                # Evaluation framework
 ```
+
+---
+
+## Scope Boundary
+
+- **Bootstrap framework** (`claude-bootstrap/`) — provides methodology templates, skills, and patterns
+- **Project scope** (`.claude/` in your project) — customized agents, skills, rules, and execution state
+
+Bootstrap agents operate in read-only mode on project files; they only write to `.claude/` and CLAUDE.md. Downstream agents own project execution.
