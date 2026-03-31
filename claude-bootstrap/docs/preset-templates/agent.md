@@ -1,11 +1,11 @@
 ---
 name: role-name
 description: When to invoke — orchestrator uses this for routing
-tier: [high | low]  # orchestrator resolves to model via CLAUDE_TIER_* env vars in .claude/settings.json
+tier: [high | low]  # orchestrator resolves to model via CLAUDE_TIER_* env vars in .claude/settings.local.json
 tools: [comma-separated list — scope to this role's authority]
 metadata:  # drop any fields if not applicable
-  reads: [none | paths | all]
-  writes: [none | paths | all]
+  reads: [PLAN.md, CONTEXT.md, project files as scoped to task]
+  writes: [project files only — no .claude/ writes, no state/ writes]
   invokes:
     skills: []
     agents: []
@@ -33,7 +33,8 @@ What this role verifies before its output is considered done
 - ...
 
 ## Watches For
-- Do not write directly to `.claude/state/` — report back to the orchestrator
+- **State writes**: Do not write directly to `.claude/state/CONTEXT.md` or append session logs — use the Report Template in `orchestrate/modules/contract.md` to return results to orchestrator
+  - **Exception**: You MAY write a single `.claude/state/logs/{date}_{seq}_blocker.md` entry (blocker template) if you discover a blocker, then return status=blocked with the log path in your report
 - [role-specific pattern] → [response]
 - ...
 
@@ -43,6 +44,6 @@ What this role verifies before its output is considered done
 - Human-escalate: Blocked, conflicting suggestions, or spec change needed
 
 ## Tensions
-- [peer-role-1]: Disagree on [X] — why that's good
-- [peer-role-2]: Disagree on [Y] and [Z] — why that's good
+- [peer-agent-1]: Disagree on [X] — why that's good
+- [peer-agent-2]: Disagree on [Y] and [Z] — why that's good
 - ...

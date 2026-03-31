@@ -17,7 +17,7 @@
 ## 3. Operational
 - Completion [✅/⚠️/❌] — X/Y tasks (Z%), Phase N
 - Blockers [✅/⚠️/❌]
-  - [type: issue/escalation] [name] — Phase N, N phases old — [resolution path or "awaiting user decision"]
+  - [type: blocker] [name] — Phase N, N phases old — [resolution path or "awaiting user decision"]
   - ...
 
 ## 4. Strategic

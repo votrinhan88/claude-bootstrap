@@ -1,6 +1,6 @@
 ---
 name: bootstrap-audit
-description: Agent-only. Analyze existing project structure, tools, conventions, and gaps. Existing-project path only; runs before bootstrap-git.
+description: Agent-only. Analyze project structure, tools, conventions, and gaps.
 user-invocable: false
 metadata:
   reads: all
@@ -10,7 +10,7 @@ metadata:
 ---
 
 # Bootstrap Audit
-Audit an existing project to understand tools, environment, conventions, and gaps for framework integration.
+Audit a project to understand tools, environment, conventions, and gaps for framework integration.
 
 ## Steps
 1. **Explore structure** — read project directory layout
@@ -27,6 +27,13 @@ Audit an existing project to understand tools, environment, conventions, and gap
 
 ## Examples
 
+**New/empty project:**
+- Tools: (none yet)
+- Conventions: (none yet)
+- `.claude/`: does not exist
+- Gaps: All infrastructure missing; user will define in planning session
+- Recommendation: New
+
 **AI/ML paper (existing project, local latex, no `.claude/`):**
 - Tools: Python, LaTeX, Jupyter, local filesystem
 - Conventions: Manual versioning, overleaf-style comments in .tex files
@@ -42,6 +49,7 @@ Audit an existing project to understand tools, environment, conventions, and gap
 - Recommendation: Existing + Extend
 
 ## Edge Cases
+- **Empty/new project:** Audit proceeds normally; report `project_exists: false` and empty findings; recommend integration mode "new"
 - **No `.claude/` directory:** Audit proceeds normally; integration mode deferred to bootstrap-integration
 - **`.claude/` exists but incomplete:** Report what's present; note gaps in agents, skills, state structure
 - **Conflicting conventions:** Document what's observed; user clarifies preference during `planning-interview`

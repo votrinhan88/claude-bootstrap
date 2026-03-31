@@ -10,6 +10,8 @@ After each plan phase:
 >
 > Verdict: **Ready to Proceed** / **Needs Attention** / **Needs Rework**
 >
+> On **Ready to Proceed**: Write a checkpoint log entry to `.claude/state/logs/{date}_{seq}_checkpoint.md` documenting phase completion metrics, work done, blockers resolved, and next phase guidance.
+>
 > For critical phases, use a different model for review than implementation.
 
 Include in every phase gate:

@@ -16,7 +16,7 @@ metadata:
 
 Runtime skill for managing `.claude/state/` — both CONTEXT.md (working memory) and logs/ (append-only history). These are two views of the same state: CONTEXT.md is what's true *now*; logs record *how we got here*.
 
-**Context template:** `claude-bootstrap/templates/context.md`
+**Context template:** `claude-bootstrap/docs/preset-templates/context.md`
 **Log schema:** `claude-bootstrap/skills/bootstrap/bootstrap-state.md`
 
 ---
@@ -48,7 +48,7 @@ Runtime skill for managing `.claude/state/` — both CONTEXT.md (working memory)
    5. **Review Decisions** — any decision older than 5 sessions: still valid? Downgrade confidence or move to Open Issues if uncertain
    6. **Budget** — CONTEXT.md must stay under **50 lines of content**. Else move detail to a log entry, leave a reference
 2. **Write log entry** — append a new file to `.claude/state/logs/` using the project's log templates in `.claude/docs/templates/logs/`
-   - Most session ends produce a `handoff` entry; use `decision`, `issue`, or `review` as events warrant
+   - Log type is determined by the caller: orchestrate (checkpoint after phase gates), health (handoff at Level 3)
    - Append-only — never edit old log entries
    - One file per entry, one entry per file
 
